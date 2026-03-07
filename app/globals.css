@@ -198,6 +198,59 @@
     --ring-offset: var(--color-stone-950);
 
     --shadow-color: 0 0% 0%;
+
+    /* Direct color overrides for dark mode */
+    color-scheme: dark;
+  }
+
+  /* Dark mode direct overrides */
+  .dark body {
+    background-color: hsl(20 14% 4%);
+    color: hsl(60 9% 98%);
+  }
+
+  .dark section {
+    background-color: inherit;
+  }
+
+  .dark .bg-white {
+    background-color: hsl(24 10% 10%) !important;
+  }
+
+  .dark .bg-neutral-50 {
+    background-color: hsl(12 6% 15%) !important;
+  }
+
+  .dark .bg-neutral-100 {
+    background-color: hsl(30 6% 25%) !important;
+  }
+
+  .dark .text-neutral-900 {
+    color: hsl(60 9% 98%) !important;
+  }
+
+  .dark .text-neutral-800 {
+    color: hsl(60 5% 96%) !important;
+  }
+
+  .dark .text-neutral-700 {
+    color: hsl(20 6% 90%) !important;
+  }
+
+  .dark .text-neutral-600 {
+    color: hsl(24 6% 83%) !important;
+  }
+
+  .dark .text-neutral-500 {
+    color: hsl(24 5% 64%) !important;
+  }
+
+  .dark .border-neutral-200 {
+    border-color: hsl(30 6% 25%) !important;
+  }
+
+  .dark .border-neutral-100 {
+    border-color: hsl(12 6% 15%) !important;
   }
 
   /* Auto dark mode based on system preference */
@@ -248,6 +301,8 @@
     --color-primary-700: 202 96% 35%;
     --color-accent-500: 174 72% 46%;
     --color-accent-600: 175 77% 38%;
+    --theme-primary: hsl(201 96% 42%);
+    --theme-primary-hover: hsl(202 96% 35%);
   }
 
   /* Forest - Natural green tones */
@@ -257,6 +312,8 @@
     --color-primary-700: 154 64% 28%;
     --color-accent-500: 35 92% 50%;
     --color-accent-600: 32 88% 45%;
+    --theme-primary: hsl(153 62% 34%);
+    --theme-primary-hover: hsl(154 64% 28%);
   }
 
   /* Sunset - Warm coral/orange tones */
@@ -266,6 +323,8 @@
     --color-primary-700: 12 78% 43%;
     --color-accent-500: 35 95% 55%;
     --color-accent-600: 30 90% 48%;
+    --theme-primary: hsl(14 80% 50%);
+    --theme-primary-hover: hsl(12 78% 43%);
   }
 
   /* Minimal - Pure grayscale */
@@ -275,6 +334,8 @@
     --color-primary-700: 0 0% 10%;
     --color-accent-500: 0 0% 40%;
     --color-accent-600: 0 0% 30%;
+    --theme-primary: hsl(0 0% 15%);
+    --theme-primary-hover: hsl(0 0% 10%);
   }
 
   /* Royal - Rich purple tones */
@@ -284,6 +345,34 @@
     --color-primary-700: 274 74% 40%;
     --color-accent-500: 320 72% 55%;
     --color-accent-600: 322 74% 47%;
+    --theme-primary: hsl(272 72% 47%);
+    --theme-primary-hover: hsl(274 74% 40%);
+  }
+
+  /* Theme color overrides for primary colors */
+  [class*="theme-"] .bg-primary-500,
+  [class*="theme-"] .bg-primary-600 {
+    background-color: var(--theme-primary) !important;
+  }
+
+  [class*="theme-"] .hover\:bg-primary-600:hover,
+  [class*="theme-"] .hover\:bg-primary-700:hover {
+    background-color: var(--theme-primary-hover) !important;
+  }
+
+  [class*="theme-"] .text-primary-500,
+  [class*="theme-"] .text-primary-600 {
+    color: var(--theme-primary) !important;
+  }
+
+  [class*="theme-"] .border-primary-500,
+  [class*="theme-"] .border-primary-600 {
+    border-color: var(--theme-primary) !important;
+  }
+
+  [class*="theme-"] .shadow-primary-500\/25 {
+    --tw-shadow-color: var(--theme-primary);
+    --tw-shadow: 0 10px 15px -3px rgb(from var(--theme-primary) r g b / 0.25);
   }
 }
 

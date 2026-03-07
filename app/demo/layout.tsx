@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Footer } from "@/components/layout/Footer";
+import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 
 /**
  * Demo Layout - Separate layout for the business template demo
@@ -112,8 +113,9 @@ export default function DemoLayout({
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden md:block">
+            {/* CTA Button + Theme Switcher */}
+            <div className="hidden md:flex items-center gap-3">
+              <ThemeSwitcher />
               <Button className={cn(
                 "transition-colors",
                 !scrolled && "bg-white text-neutral-900 hover:bg-white/90"
@@ -169,8 +171,9 @@ export default function DemoLayout({
                     {item.label}
                   </Link>
                 ))}
-                <div className="pt-2">
-                  <Button asChild className="w-full">
+                <div className="pt-2 flex items-center gap-3">
+                  <ThemeSwitcher />
+                  <Button asChild className="flex-1">
                     <Link href="/demo/contact">Contact</Link>
                   </Button>
                 </div>

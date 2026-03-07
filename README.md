@@ -2,6 +2,8 @@
 
 A professional UI kit for building beautiful websites with Claude Code. No generic "AI-look" — only elegant, editorial designs that look like they were crafted by a design agency.
 
+![Claude Craft Preview](.github/preview.png)
+
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)
 ![TypeScript](https://img.shields.io/badge/TypeScript-✓-3178c6)

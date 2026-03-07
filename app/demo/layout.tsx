@@ -16,6 +16,7 @@ import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 
 const demoNavItems = [
   { label: "Home", href: "/demo" },
+  { label: "Components", href: "/demo/components" },
   { label: "Services", href: "/demo/services" },
   { label: "About", href: "/demo/about" },
   { label: "Contact", href: "/demo/contact" },

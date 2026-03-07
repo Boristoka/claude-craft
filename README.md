@@ -26,11 +26,13 @@ A professional UI kit for building beautiful websites with Claude Code. No gener
 ## Getting Started
 
 ```bash
-git clone https://github.com/your-username/claude-craft.git
+git clone https://github.com/Boristoka/claude-craft.git
 cd claude-craft
 npm install
 npm run dev
 ```
+
+**Live Demo:** [https://claude-ui-kit.vercel.app](https://claude-ui-kit.vercel.app)
 
 **URLs:**
 - `http://localhost:3000` - UI Kit landing page

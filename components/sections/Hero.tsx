@@ -151,7 +151,7 @@ export function Hero({ className }: HeroProps) {
               </svg>
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/Boristoka/claude-craft"
               className="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-gray-900 font-medium rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

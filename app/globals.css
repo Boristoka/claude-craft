@@ -160,6 +160,131 @@
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
+
+  /* ===========================================
+     DARK MODE
+     =========================================== */
+  .dark {
+    --background: var(--color-stone-950);
+    --background-subtle: var(--color-stone-900);
+    --background-muted: var(--color-stone-800);
+    --background-emphasis: 0 0% 100%;
+
+    --foreground: var(--color-stone-50);
+    --foreground-muted: var(--color-stone-300);
+    --foreground-subtle: var(--color-stone-400);
+
+    --primary: var(--color-primary-400);
+    --primary-hover: var(--color-primary-300);
+    --primary-foreground: var(--color-stone-950);
+    --primary-muted: var(--color-primary-900);
+
+    --accent: var(--color-accent-400);
+    --accent-hover: var(--color-accent-300);
+    --accent-muted: var(--color-accent-900);
+
+    --secondary: var(--color-secondary-400);
+    --secondary-hover: var(--color-secondary-300);
+    --secondary-muted: var(--color-secondary-900);
+
+    --border: var(--color-stone-700);
+    --border-muted: var(--color-stone-800);
+    --border-emphasis: var(--color-stone-600);
+
+    --card: var(--color-stone-900);
+    --card-foreground: var(--color-stone-50);
+
+    --ring: var(--color-primary-400);
+    --ring-offset: var(--color-stone-950);
+
+    --shadow-color: 0 0% 0%;
+  }
+
+  /* Auto dark mode based on system preference */
+  @media (prefers-color-scheme: dark) {
+    .dark-auto {
+      --background: var(--color-stone-950);
+      --background-subtle: var(--color-stone-900);
+      --background-muted: var(--color-stone-800);
+      --background-emphasis: 0 0% 100%;
+
+      --foreground: var(--color-stone-50);
+      --foreground-muted: var(--color-stone-300);
+      --foreground-subtle: var(--color-stone-400);
+
+      --primary: var(--color-primary-400);
+      --primary-hover: var(--color-primary-300);
+      --primary-foreground: var(--color-stone-950);
+      --primary-muted: var(--color-primary-900);
+
+      --accent: var(--color-accent-400);
+      --accent-hover: var(--color-accent-300);
+      --accent-muted: var(--color-accent-900);
+
+      --secondary: var(--color-secondary-400);
+      --secondary-hover: var(--color-secondary-300);
+      --secondary-muted: var(--color-secondary-900);
+
+      --border: var(--color-stone-700);
+      --border-muted: var(--color-stone-800);
+      --border-emphasis: var(--color-stone-600);
+
+      --card: var(--color-stone-900);
+      --card-foreground: var(--color-stone-50);
+
+      --ring: var(--color-primary-400);
+      --ring-offset: var(--color-stone-950);
+    }
+  }
+
+  /* ===========================================
+     THEME PRESETS
+     =========================================== */
+
+  /* Ocean - Cool blue tones */
+  .theme-ocean {
+    --color-primary-500: 200 95% 48%;
+    --color-primary-600: 201 96% 42%;
+    --color-primary-700: 202 96% 35%;
+    --color-accent-500: 174 72% 46%;
+    --color-accent-600: 175 77% 38%;
+  }
+
+  /* Forest - Natural green tones */
+  .theme-forest {
+    --color-primary-500: 152 60% 40%;
+    --color-primary-600: 153 62% 34%;
+    --color-primary-700: 154 64% 28%;
+    --color-accent-500: 35 92% 50%;
+    --color-accent-600: 32 88% 45%;
+  }
+
+  /* Sunset - Warm coral/orange tones */
+  .theme-sunset {
+    --color-primary-500: 15 85% 57%;
+    --color-primary-600: 14 80% 50%;
+    --color-primary-700: 12 78% 43%;
+    --color-accent-500: 35 95% 55%;
+    --color-accent-600: 30 90% 48%;
+  }
+
+  /* Minimal - Pure grayscale */
+  .theme-minimal {
+    --color-primary-500: 0 0% 20%;
+    --color-primary-600: 0 0% 15%;
+    --color-primary-700: 0 0% 10%;
+    --color-accent-500: 0 0% 40%;
+    --color-accent-600: 0 0% 30%;
+  }
+
+  /* Royal - Rich purple tones */
+  .theme-royal {
+    --color-primary-500: 270 70% 55%;
+    --color-primary-600: 272 72% 47%;
+    --color-primary-700: 274 74% 40%;
+    --color-accent-500: 320 72% 55%;
+    --color-accent-600: 322 74% 47%;
+  }
 }
 
 /* ===========================================

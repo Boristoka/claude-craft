@@ -11,6 +11,9 @@ Welcome to Claude Craft! This UI kit helps you build beautiful websites that don
 | `/patterns` | View section patterns (hero, stats, testimonials, etc.) |
 | `/components` | View component usage examples |
 | `/photos` | Get quality stock photo URLs by category |
+| `/darkmode` | Enable dark mode for your site |
+| `/theme` | Apply color theme presets (ocean, forest, sunset, etc.) |
+| `/forms` | Form validation guide with Zod + React Hook Form |
 
 ## Quick Start
 
@@ -72,4 +75,7 @@ components/
 - `/patterns` - Code for common section layouts
 - `/components` - How to use each UI component
 - `/photos` - Stock photos organized by category
+- `/darkmode` - Enable dark mode
+- `/theme` - Apply color theme presets
+- `/forms` - Form validation setup
 - Check `app/demo/` for working examples

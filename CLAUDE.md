@@ -12,6 +12,9 @@ A UI kit for building beautiful websites with Claude Code. Editorial design styl
 | `/patterns` | Section code patterns (hero, stats, CTA, etc.) |
 | `/components` | Component usage examples |
 | `/photos` | Stock photo URLs by category |
+| `/darkmode` | Enable dark mode |
+| `/theme` | Apply color theme presets |
+| `/forms` | Form validation with Zod |
 
 **Example:** `/website A bakery in Austin called "Golden Crust". Family business since 1952.`
 

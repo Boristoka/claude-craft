@@ -4,6 +4,195 @@ Usage examples for all UI components.
 
 ---
 
+## Bento Grid
+
+Trendy asymmetric grid layout inspired by Apple and Linear.
+
+```tsx
+import { BentoGrid, BentoCard, BentoIcons } from "@/components/ui/BentoGrid";
+
+<BentoGrid>
+  <BentoCard
+    size="large"
+    title="Main Feature"
+    description="This is the main feature that spans 2 columns."
+    icon={<BentoIcons.Sparkles />}
+    gradient="vibrant"
+  />
+  <BentoCard
+    size="small"
+    title="Feature 2"
+    description="A smaller feature card."
+    icon={<BentoIcons.Zap />}
+  />
+  <BentoCard
+    size="tall"
+    title="Tall Card"
+    description="Spans 2 rows vertically."
+    icon={<BentoIcons.Shield />}
+  />
+  <BentoCard
+    size="wide"
+    title="Wide Card"
+    description="Spans full width."
+    icon={<BentoIcons.Globe />}
+    href="/learn-more"
+  />
+</BentoGrid>
+
+// Sizes: "small" | "medium" | "large" | "wide" | "tall"
+// Gradients: "none" | "subtle" | "vibrant"
+```
+
+---
+
+## Marquee
+
+Infinite scrolling content for logos or testimonials.
+
+```tsx
+import { Marquee, LogoMarquee, TestimonialMarquee } from "@/components/ui/Marquee";
+
+// Basic marquee
+<Marquee speed="normal" direction="left">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Marquee>
+
+// Logo cloud
+<LogoMarquee
+  logos={[
+    { name: "Company 1", logo: <Logo1 /> },
+    { name: "Company 2", logo: <Logo2 /> },
+  ]}
+/>
+
+// Testimonials
+<TestimonialMarquee
+  testimonials={[
+    { quote: "Amazing!", author: "John", role: "CEO" },
+    { quote: "Love it!", author: "Jane", role: "Designer" },
+  ]}
+/>
+
+// Speeds: "slow" | "normal" | "fast"
+// Directions: "left" | "right"
+```
+
+---
+
+## Spotlight Card
+
+Cards with cursor-following glow effect.
+
+```tsx
+import { SpotlightCard, SpotlightFeatureCard, SpotlightCardGrid } from "@/components/ui/SpotlightCard";
+
+// Basic spotlight card
+<SpotlightCard>
+  <h3>Feature Title</h3>
+  <p>Description here</p>
+</SpotlightCard>
+
+// Pre-styled feature card
+<SpotlightFeatureCard
+  icon={<IconComponent />}
+  title="Feature"
+  description="Description"
+  spotlightColor="rgba(99, 102, 241, 0.15)"
+/>
+
+// Grid of spotlight cards
+<SpotlightCardGrid columns={3}>
+  <SpotlightFeatureCard ... />
+  <SpotlightFeatureCard ... />
+  <SpotlightFeatureCard ... />
+</SpotlightCardGrid>
+```
+
+---
+
+## Pricing Table
+
+Professional pricing with monthly/yearly toggle.
+
+```tsx
+import { PricingTable } from "@/components/ui/PricingTable";
+
+<PricingTable
+  yearlyDiscount={20}
+  plans={[
+    {
+      name: "Starter",
+      description: "For individuals",
+      price: { monthly: 9, yearly: 86 },
+      features: ["5 projects", "Basic support", "1GB storage"],
+      cta: "Start Free",
+      ctaLink: "/signup",
+    },
+    {
+      name: "Pro",
+      description: "For teams",
+      price: { monthly: 29, yearly: 278 },
+      features: ["Unlimited projects", "Priority support", "100GB storage"],
+      featured: true,
+      badge: "Most Popular",
+    },
+    {
+      name: "Enterprise",
+      description: "For large orgs",
+      price: { monthly: 99, yearly: 950 },
+      features: ["Everything in Pro", "Custom integrations", "SLA"],
+    },
+  ]}
+/>
+```
+
+---
+
+## Command Palette
+
+Cmd+K style search interface.
+
+```tsx
+import { CommandPalette, CommandIcons } from "@/components/ui/CommandPalette";
+
+<CommandPalette
+  placeholder="Search or type a command..."
+  commands={[
+    {
+      id: "home",
+      label: "Go to Home",
+      description: "Navigate to homepage",
+      icon: <CommandIcons.Home />,
+      shortcut: "⌘H",
+      href: "/",
+      category: "Navigation",
+    },
+    {
+      id: "settings",
+      label: "Open Settings",
+      icon: <CommandIcons.Settings />,
+      action: () => openSettings(),
+      category: "Actions",
+    },
+    {
+      id: "search",
+      label: "Search docs",
+      icon: <CommandIcons.Search />,
+      shortcut: "⌘/",
+      category: "Search",
+    },
+  ]}
+/>
+
+// Opens with Cmd+K or click
+// Navigate with ↑↓, select with Enter, close with Escape
+```
+
+---
+
 ## Button
 
 ```tsx

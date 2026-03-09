@@ -57,7 +57,7 @@ const features = [
     description: "Type /website in Claude Code, answer a few questions, and get a fully customized website. That's it.",
   },
   {
-    title: "31 premium components",
+    title: "70+ premium components",
     description: "From interactive maps to cookie banners. Everything production-ready with Next.js 16 and Tailwind CSS 4.",
   },
   {
@@ -76,7 +76,11 @@ const components = [
   "BentoGrid", "Marquee", "SpotlightCard", "PricingTable", "CommandPalette",
   "ProjectCard", "BlogCard", "TeamCard", "AnimateOnScroll", "ThemeSwitcher",
   "ValidatedForm", "Map", "CookieBanner", "Footer", "ParallaxImage",
-  "Testimonial", "FeatureCard",
+  "TestimonialCard", "FeatureCard", "DataTable", "StatsCard", "Timeline",
+  "ProductCard", "CartDrawer", "ImageGallery", "ReviewStars", "MegaMenu",
+  "SidebarNav", "FloatingNav", "Breadcrumb", "Pagination", "Stepper",
+  "AnimatedGradient", "TextReveal", "ParticleField", "GradientBlob", "Dock",
+  "FileUpload", "NewsletterSignup", "ComparisonSlider", "MenuSection", "LogoCloud",
 ];
 
 export default function LandingPage() {
@@ -274,7 +278,7 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimateOnScroll animation="fadeInUp">
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-6">
-                <CountUp end={31} /> components, infinite possibilities
+                <CountUp end={70} />+ components, infinite possibilities
               </h2>
               <p className="text-lg text-neutral-600 leading-relaxed mb-8">
                 Interactive maps, cookie banners, pricing tables, team cards, blog layouts, and more.
@@ -441,7 +445,7 @@ export default function LandingPage() {
           <AnimateOnScroll animation="fadeInUp" delay={0.4} className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
               <Link href="/demo/components">
-                View all 31 components
+                View all 70+ components
                 <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -461,7 +465,7 @@ export default function LandingPage() {
               See it in action
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              9 page templates, interactive maps, cookie consent, SEO setup — everything a real business website needs.
+              12 page templates, interactive maps, cookie consent, SEO setup — everything a real business website needs.
             </p>
           </AnimateOnScroll>
 

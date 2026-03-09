@@ -5,9 +5,7 @@ description: Interactive wizard to build a complete website. Asks about your bus
 
 # /website - Build Your Website
 
-You are building a website by modifying existing demo files. Follow these steps EXACTLY.
-
----
+You are building a website in a NEW folder based on the business name. The `/demo` folder stays intact as a reference example. Follow these steps EXACTLY.
 
 ## STEP 1: Industry Selection
 
@@ -65,9 +63,67 @@ Wait for their response. Do NOT ask follow-up questions.
 
 ---
 
-## STEP 3: Load Template & Build
+## STEP 3: Create Project Folder
 
-After they respond, say:
+Based on the business name, create a URL-friendly slug:
+- "Bella Italia" → `bella-italia`
+- "FlowMetrics" → `flowmetrics`
+- "De Haan & Partners" → `de-haan-partners`
+
+**Create the folder structure:**
+```
+app/[slug]/
+├── layout.tsx
+├── page.tsx
+├── about/page.tsx
+├── services/page.tsx (or menu/, products/, features/ based on industry)
+├── contact/page.tsx
+└── pricing/page.tsx (if applicable)
+```
+
+**Copy `app/demo/layout.tsx` as your starting point** for the layout, then customize it.
+
+The website will be available at `localhost:3000/[slug]`
+
+---
+
+## STEP 4: Component Discovery (REQUIRED)
+
+**Before building, you MUST explore the component library and decide what to use.**
+
+### 4a. Read the Component Reference
+Read `.claude/COMPONENTS.md` to see all available specialized components.
+
+### 4b. Choose Components for This Business
+Based on the industry and business info, decide which components best fit this specific website.
+
+**Think about:**
+- What is the main thing visitors need to see? (menu, products, features, portfolio)
+- What actions should visitors take? (reserve, buy, contact, subscribe)
+- What builds trust? (reviews, client logos, badges, timeline)
+
+### 4c. State Your Plan
+Before editing any files, output your component plan:
+
+```
+**Component Plan for [BUSINESS_NAME]:**
+
+Homepage sections:
+- Hero with [description]
+- [Component] for [purpose]
+- [Component] for [purpose]
+- ...
+
+I will replace the default services grid with [Component] because [reason].
+```
+
+**IMPORTANT:** Do NOT just copy the demo template structure. Choose components that actually fit this business type.
+
+---
+
+## STEP 5: Load Template & Build
+
+After stating your component plan, say:
 ```
 **Building your website now...** ⏳
 ```
@@ -81,169 +137,91 @@ Based on their industry choice, read the corresponding template file:
 - **Agency (3):** Read `.claude/templates/agency.md`
 - **Portfolio (4):** Read `.claude/templates/portfolio.md`
 - **E-commerce (5):** Read `.claude/templates/ecommerce.md`
-- **Other (6):** Use the generic instructions below
+- **Other (6):** Read `.claude/COMPONENTS.md` and build based on business type
 
-Use the template content as your guide for:
-- Copy/messaging style
-- Section structure
+Use the template for:
+- Copy/messaging style and tone
 - Photo URLs
-- Navigation items
-- Stats and testimonials
+- Stats and testimonials examples
 
-**IMPORTANT:** Replace all placeholder text with the user's actual business info. Combine template content with their specific details.
+**But use YOUR component plan for the structure.** The template provides content, not layout.
 
 ---
 
-## INDUSTRY-SPECIFIC COMPONENTS
+## FILE CREATION INSTRUCTIONS
 
-Based on the industry, import and use these components on the homepage:
+**Use `app/demo/` files as reference**, but create NEW files in `app/[slug]/`.
 
-### SaaS (1)
+### File 1: `app/[slug]/layout.tsx`
+
+**Read `app/demo/layout.tsx` first** as reference, then create a new layout with:
+
+- **Navigation items** customized for this business type:
+  - Restaurant: Home, Menu, About, Gallery, Reservations
+  - SaaS: Home, Features, Pricing, About, Contact
+  - E-commerce: Home, Products, About, Contact
+- **Logo initials** → their business initials
+- **Company name** → their business name
+- **Footer** with their contact info, description, etc.
+
+**IMPORTANT:** Update all internal links to use `/[slug]/` paths:
 ```tsx
-import { FeatureGrid, FeatureIcons } from "@/components/ui/FeatureGrid";
-import { LogoCloud } from "@/components/ui/LogoCloud";
-import { TestimonialGrid } from "@/components/ui/TestimonialCard";
-
-// Use on homepage:
-// - FeatureGrid with icons for features section (replace services)
-// - LogoCloud for "Trusted by" section
-// - TestimonialGrid for social proof
-// - Link to /demo/pricing prominently
-```
-
-### Restaurant (2)
-```tsx
-import { MenuSection, OpeningHours, ReservationCTA } from "@/components/ui/MenuSection";
-import { Map } from "@/components/ui/Map";
-import { TestimonialGrid } from "@/components/ui/TestimonialCard";
-
-// Use on homepage:
-// - MenuSection for menu highlights (replace services)
-// - OpeningHours block
-// - ReservationCTA for booking
-// - Map with restaurant location
-// - TestimonialGrid for reviews
-```
-
-### Agency (3)
-```tsx
-import { LogoCloud } from "@/components/ui/LogoCloud";
-import { ProcessSteps } from "@/components/ui/Timeline";
-import { TestimonialGrid } from "@/components/ui/TestimonialCard";
-import { Marquee } from "@/components/ui/Marquee";
-
-// Use on homepage:
-// - LogoCloud or Marquee for client logos
-// - ProcessSteps for "How we work" section
-// - TestimonialGrid for client testimonials
-// - Keep services section with portfolio link
-```
-
-### Portfolio (4)
-```tsx
-import { Timeline, ProcessSteps } from "@/components/ui/Timeline";
-import { FeatureGrid } from "@/components/ui/FeatureGrid";
-import { TestimonialGrid } from "@/components/ui/TestimonialCard";
-import { AvailabilityBadge } from "@/components/ui/NewsletterSignup";
-
-// Use on homepage:
-// - AvailabilityBadge in hero
-// - FeatureGrid for services/skills
-// - Timeline on about page for experience
-// - ProcessSteps for "How I work"
-// - TestimonialGrid for client reviews
-```
-
-### E-commerce (5)
-```tsx
-import { ProductCard, ProductGrid, CollectionCard } from "@/components/ui/ProductCard";
-import { TrustBadges, TrustIcons } from "@/components/ui/LogoCloud";
-import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
-import { TestimonialGrid } from "@/components/ui/TestimonialCard";
-
-// Use on homepage:
-// - TrustBadges row (shipping, returns, secure)
-// - ProductGrid for featured products or CollectionCard for categories
-// - TestimonialGrid for customer reviews
-// - NewsletterSignup for email capture
+const navItems = [
+  { label: "Home", href: "/[slug]" },
+  { label: "About", href: "/[slug]/about" },
+  // etc.
+];
 ```
 
 ---
 
-## EDITING INSTRUCTIONS
+### File 2: `app/[slug]/page.tsx` (Homepage)
 
-### File 1: `app/demo/layout.tsx`
+**Read `app/demo/page.tsx` first** as reference, then create based on YOUR COMPONENT PLAN.
 
-**Read the file first**, then make these edits:
-
-**Edit 1a - Navigation items:**
-Find the `demoNavItems` array and replace it based on the template's recommended navigation.
-
-**Edit 1b - Logo initials:**
-Find `<span className="text-white font-semibold text-sm">` and change to their business initials.
-
-**Edit 1c - Company name:**
-Find `Acme Studio` in the header and replace with their business name.
-
-**Edit 1d - Footer:**
-Update the `<Footer` component:
-- `companyName` → their name
-- `description` → their tagline/description
-- `sections` array → their contact info
-- Update email, phone, location
+Include:
+- **Imports** for the components you chose in Step 4
+- **Hero section** with business-specific content
+- **Main content sections** using industry-appropriate components:
+  - Restaurant → `<MenuSection>` with menu categories
+  - SaaS → `<FeatureGrid>` with feature icons
+  - E-commerce → `<ProductGrid>` with products
+- **Industry-specific sections** like:
+  - `<OpeningHours>` and `<ReservationCTA>` for restaurants
+  - `<LogoCloud>` for agencies/SaaS
+  - `<TrustBadges>` for e-commerce
+- **Stats** with industry-appropriate metrics
+- **Testimonials** with locale-appropriate names
 
 ---
 
-### File 2: `app/demo/page.tsx` (Homepage)
+### File 3: `app/[slug]/about/page.tsx`
 
-**Read the file first**, then make these edits:
-
-**Edit 2a - Hero badge:**
-Change `<Badge>` text to match template style (e.g., "Trusted by 10,000+ teams" for SaaS, "Est. 1998" for Restaurant).
-
-**Edit 2b - Hero headline:**
-Change the `<h1>` text. Keep the `<em className="italic">` pattern for emphasis.
-
-**Edit 2c - Hero subline:**
-Change the paragraph after h1 to their value proposition.
-
-**Edit 2d - Hero image:**
-Change `<img src="..."` to the appropriate template photo URL.
-
-**Edit 2e - Services array:**
-Replace `const services = [...]` with their services, using template structure and photo URLs.
-
-**Edit 2f - Stats:**
-Replace `const stats = [...]` with template-appropriate stats, customized with realistic numbers.
-
-**Edit 2g - Testimonials:**
-Replace `const testimonials = [...]` with template testimonials, updating names/companies to fit their locale.
+Create about page with:
+- Hero headline (e.g., "Over [Business Name]" or "Our Story")
+- Story section using template structure
+- Values section
+- Industry-appropriate photos from template
 
 ---
 
-### File 3: `app/demo/about/page.tsx`
+### File 4: `app/[slug]/[services-or-menu-or-products]/page.tsx`
 
-**Edit 3a - Hero headline:** e.g., "Over [Business Name]" or "Our Story"
-**Edit 3b - Story section:** Use template story structure with their details
-**Edit 3c - Values:** Use template values or customize
-**Edit 3d - Photos:** Industry-appropriate images from template
-
----
-
-### File 4: `app/demo/services/page.tsx`
-
-**Edit 4a - Page title:** Match industry (e.g., "Menu" for restaurant, "Features" for SaaS)
-**Edit 4b - Services list:** Their actual services with template descriptions as inspiration
-**Edit 4c - Photos:** Industry-appropriate images
+Create the main offerings page. Name it appropriately:
+- Restaurant → `menu/page.tsx`
+- SaaS → `features/page.tsx`
+- E-commerce → `products/page.tsx`
+- Agency → `services/page.tsx`
 
 ---
 
-### File 5: `app/demo/contact/page.tsx`
+### File 5: `app/[slug]/contact/page.tsx`
 
-**Edit 5a - Contact info:** Their email, phone, address
-**Edit 5b - FAQ:** Use template FAQs customized to their business
-**Edit 5c - LocalBusinessSchema:** Update structured data
-**Edit 5d - Map coordinates:** Use Google Maps to find their city's lat/long
+Create contact page with:
+- Contact info (email, phone, address)
+- FAQ section customized for the business
+- LocalBusinessSchema structured data
+- Map with correct coordinates
 
 ```tsx
 <Map
@@ -259,9 +237,9 @@ Replace `const testimonials = [...]` with template testimonials, updating names/
 
 ---
 
-### File 6: `app/demo/pricing/page.tsx` (if applicable)
+### File 6: `app/[slug]/pricing/page.tsx` (if applicable)
 
-For SaaS, Agency, Portfolio, or E-commerce, update pricing:
+For SaaS, Agency, or subscription services:
 - Plan names and descriptions
 - Price points (realistic for their industry)
 - Feature lists
@@ -286,21 +264,25 @@ Los Angeles: 34.0522, -118.2437
 
 ---
 
-## STEP 4: Completion Message
+## STEP 6: Completion Message
 
-After ALL edits are done, send:
+After ALL files are created, send:
 
 ```
 ✅ **Your website is ready!**
 
-I've built a complete [INDUSTRY] website with:
-- ✓ Homepage (hero, features, testimonials, stats)
+I've built a complete [INDUSTRY] website for [BUSINESS_NAME]:
+- ✓ Homepage with [COMPONENTS_USED]
 - ✓ About page (story, values)
-- ✓ Services/[RELEVANT] page
+- ✓ [SERVICES/MENU/PRODUCTS] page
 - ✓ Contact page (info, FAQ, map)
 [+ any other pages]
 
-🌐 **View it:** http://localhost:3000/demo
+🌐 **View it:** http://localhost:3000/[slug]
+
+📁 **Your files:** `app/[slug]/`
+
+**The demo at /demo is still available as a reference.**
 
 **Want changes?** Just ask:
 - "Change the headline to..."
@@ -313,21 +295,22 @@ I've built a complete [INDUSTRY] website with:
 
 ## CRITICAL RULES
 
-1. **Read before edit** - Always read a file before editing
-2. **Use Edit tool** - Never rewrite entire files, use targeted edits
-3. **Follow template** - Use template content as your guide
-4. **Customize everything** - Replace ALL placeholders with real content
-5. **No lorem ipsum** - Write real, believable content
-6. **Consistent naming** - Use same business name everywhere
-7. **Match locale** - Dutch business = Dutch names in testimonials
-8. **One question round** - Never ask follow-up questions after step 2
+1. **Create new folder** - Build in `app/[slug]/`, don't modify `/demo`
+2. **Component discovery first** - Read COMPONENTS.md and choose components BEFORE creating files
+3. **Use demo as reference** - Read demo files for patterns, but create fresh files
+4. **Don't copy demo structure blindly** - Each business type needs different components
+5. **Use correct paths** - All internal links must use `/[slug]/` prefix
+6. **Customize everything** - Replace ALL placeholders with real content
+7. **No lorem ipsum** - Write real, believable content
+8. **Match locale** - Dutch business = Dutch names in testimonials
+9. **One question round** - Never ask follow-up questions after step 2
 
 ---
 
 ## IF SOMETHING FAILS
 
-If an edit fails:
-1. Read the file again to see current state
-2. Try a smaller, more specific edit
+If file creation fails:
+1. Check if the folder exists, create it if needed
+2. Read the demo reference file again for correct patterns
 3. Continue with other files
 4. Report any issues at the end

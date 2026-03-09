@@ -115,9 +115,6 @@ export default function LandingPage() {
               <Link href="/components" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
                 Components
               </Link>
-              <Link href="/docs" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
-                Docs
-              </Link>
               <Link href="/demo" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
                 Demo
               </Link>

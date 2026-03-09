@@ -3,18 +3,36 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useMotionTemplate, useSpring, AnimatePresence } from "framer-motion";
+import { DietaryBadges, AllergenList, SpicyMeter, type DietaryType, type AllergenType } from "./DietaryBadges";
 
 /**
  * MenuSection - Restaurant menu with categories and items
  * Premium version with hover effects, image previews, and elegant animations
+ *
+ * @example
+ * const menuItems = [
+ *   {
+ *     name: "Pad Thai",
+ *     price: "€16",
+ *     description: "Classic Thai noodles with shrimp",
+ *     dietary: ["gluten-free"],
+ *     spicyLevel: 2,
+ *     allergens: ["peanuts", "shellfish", "eggs"],
+ *   }
+ * ];
  */
 
-interface MenuItem {
+export interface MenuItem {
   name: string;
   price: string;
   description?: string;
-  tag?: string; // "Popular", "New", "Spicy", "Vegetarian"
+  tag?: string; // "Popular", "New", "Spicy", "Vegetarian" (legacy support)
   image?: string;
+  // New dietary fields
+  dietary?: DietaryType[];
+  spicyLevel?: 0 | 1 | 2 | 3;
+  allergens?: AllergenType[];
+  calories?: number;
 }
 
 interface MenuCategory {
@@ -27,6 +45,9 @@ interface MenuSectionProps {
   categories: MenuCategory[];
   variant?: "default" | "cards" | "elegant" | "grid" | "spotlight";
   showImages?: boolean;
+  showDietary?: boolean;
+  showAllergens?: boolean;
+  showCalories?: boolean;
   className?: string;
 }
 
@@ -34,8 +55,13 @@ export function MenuSection({
   categories,
   variant = "default",
   showImages = false,
+  showDietary = true,
+  showAllergens = false,
+  showCalories = false,
   className,
 }: MenuSectionProps) {
+  const itemProps = { showDietary, showAllergens, showCalories };
+
   return (
     <div className={cn("space-y-16", className)}>
       {categories.map((category, categoryIndex) => (
@@ -66,6 +92,7 @@ export function MenuSection({
                   key={item.name}
                   item={item}
                   index={itemIndex}
+                  {...itemProps}
                 />
               ))}
             </div>
@@ -77,6 +104,7 @@ export function MenuSection({
                   item={item}
                   showImage={showImages}
                   index={itemIndex}
+                  {...itemProps}
                 />
               ))}
             </div>
@@ -89,19 +117,20 @@ export function MenuSection({
                   showImage={showImages}
                   index={itemIndex}
                   variant="card"
+                  {...itemProps}
                 />
               ))}
             </div>
           ) : variant === "elegant" ? (
             <div className="space-y-6">
               {category.items.map((item, itemIndex) => (
-                <MenuItemElegant key={item.name} item={item} index={itemIndex} />
+                <MenuItemElegant key={item.name} item={item} index={itemIndex} {...itemProps} />
               ))}
             </div>
           ) : (
             <div className="space-y-4">
               {category.items.map((item, itemIndex) => (
-                <MenuItemDefault key={item.name} item={item} index={itemIndex} />
+                <MenuItemDefault key={item.name} item={item} index={itemIndex} {...itemProps} />
               ))}
             </div>
           )}
@@ -111,16 +140,24 @@ export function MenuSection({
   );
 }
 
+interface MenuItemRenderProps {
+  item: MenuItem;
+  index: number;
+  showDietary?: boolean;
+  showAllergens?: boolean;
+  showCalories?: boolean;
+}
+
 /**
  * MenuItemSpotlight - Premium card with cursor-following glow and image preview on hover
  */
 function MenuItemSpotlight({
   item,
   index,
-}: {
-  item: MenuItem;
-  index: number;
-}) {
+  showDietary = true,
+  showAllergens = false,
+  showCalories = false,
+}: MenuItemRenderProps) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -176,11 +213,12 @@ function MenuItemSpotlight({
 
       <div className="relative z-10 flex justify-between items-start gap-4">
         <div className="flex-grow">
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
             <h4 className="font-medium text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
               {item.name}
             </h4>
-            {item.tag && (
+            {/* Legacy tag support */}
+            {item.tag && !item.dietary && (
               <motion.span
                 whileHover={{ scale: 1.05 }}
                 className={cn(
@@ -194,11 +232,31 @@ function MenuItemSpotlight({
                 {item.tag}
               </motion.span>
             )}
+            {/* New dietary badges */}
+            {showDietary && item.dietary && item.dietary.length > 0 && (
+              <DietaryBadges types={item.dietary} size="sm" variant="filled" />
+            )}
+            {/* Spicy level */}
+            {showDietary && item.spicyLevel && item.spicyLevel > 0 && (
+              <SpicyMeter level={item.spicyLevel} size="sm" />
+            )}
+            {/* Calories */}
+            {showCalories && item.calories && (
+              <span className="text-xs text-neutral-500 dark:text-neutral-400">
+                {item.calories} cal
+              </span>
+            )}
           </div>
           {item.description && (
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
               {item.description}
             </p>
+          )}
+          {/* Allergens */}
+          {showAllergens && item.allergens && item.allergens.length > 0 && (
+            <div className="mt-2">
+              <AllergenList allergens={item.allergens} variant="icons-only" size="sm" />
+            </div>
           )}
         </div>
         <motion.span
@@ -224,10 +282,10 @@ function MenuItemSpotlight({
 function MenuItemDefault({
   item,
   index,
-}: {
-  item: MenuItem;
-  index: number;
-}) {
+  showDietary = true,
+  showAllergens = false,
+  showCalories = false,
+}: MenuItemRenderProps) {
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
@@ -249,11 +307,12 @@ function MenuItemDefault({
       />
 
       <div className="relative flex-grow">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <h4 className="font-medium text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
             {item.name}
           </h4>
-          {item.tag && (
+          {/* Legacy tag support */}
+          {item.tag && !item.dietary && (
             <span
               className={cn(
                 "text-xs px-2 py-0.5 rounded-full",
@@ -266,11 +325,26 @@ function MenuItemDefault({
               {item.tag}
             </span>
           )}
+          {/* New dietary badges */}
+          {showDietary && item.dietary && item.dietary.length > 0 && (
+            <DietaryBadges types={item.dietary} size="sm" variant="filled" />
+          )}
+          {showDietary && item.spicyLevel && item.spicyLevel > 0 && (
+            <SpicyMeter level={item.spicyLevel} size="sm" />
+          )}
+          {showCalories && item.calories && (
+            <span className="text-xs text-neutral-500">{item.calories} cal</span>
+          )}
         </div>
         {item.description && (
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
             {item.description}
           </p>
+        )}
+        {showAllergens && item.allergens && item.allergens.length > 0 && (
+          <div className="mt-1">
+            <AllergenList allergens={item.allergens} variant="icons-only" size="sm" />
+          </div>
         )}
       </div>
       <div className="relative flex-shrink-0 font-medium text-neutral-900 dark:text-white">
@@ -283,10 +357,10 @@ function MenuItemDefault({
 function MenuItemElegant({
   item,
   index,
-}: {
-  item: MenuItem;
-  index: number;
-}) {
+  showDietary = true,
+  showAllergens = false,
+  showCalories = false,
+}: MenuItemRenderProps) {
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
@@ -303,6 +377,13 @@ function MenuItemElegant({
         <h4 className="font-medium text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
           {item.name}
         </h4>
+        {/* Dietary badges inline */}
+        {showDietary && item.dietary && item.dietary.length > 0 && (
+          <DietaryBadges types={item.dietary} size="sm" variant="minimal" />
+        )}
+        {showDietary && item.spicyLevel && item.spicyLevel > 0 && (
+          <SpicyMeter level={item.spicyLevel} size="sm" />
+        )}
         {/* Animated dotted line */}
         <div className="flex-grow relative h-[1px] overflow-hidden">
           <motion.div
@@ -326,6 +407,9 @@ function MenuItemElegant({
         <span className="font-medium text-neutral-900 dark:text-white">
           {item.price}
         </span>
+        {showCalories && item.calories && (
+          <span className="text-xs text-neutral-400 ml-1">({item.calories} cal)</span>
+        )}
       </div>
       {item.description && (
         <motion.p
@@ -337,6 +421,11 @@ function MenuItemElegant({
           {item.description}
         </motion.p>
       )}
+      {showAllergens && item.allergens && item.allergens.length > 0 && (
+        <div className="mt-1">
+          <AllergenList allergens={item.allergens} variant="icons-only" size="sm" showWarning={false} />
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -346,12 +435,10 @@ function MenuItemCard({
   showImage,
   index,
   variant = "default",
-}: {
-  item: MenuItem;
-  showImage: boolean;
-  index: number;
-  variant?: "default" | "card";
-}) {
+  showDietary = true,
+  showAllergens = false,
+  showCalories = false,
+}: MenuItemRenderProps & { showImage: boolean; variant?: "default" | "card" }) {
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
@@ -376,6 +463,12 @@ function MenuItemCard({
             alt={item.name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
+          {/* Dietary badges on image */}
+          {showDietary && item.dietary && item.dietary.length > 0 && (
+            <div className="absolute top-3 left-3">
+              <DietaryBadges types={item.dietary} size="sm" variant="filled" />
+            </div>
+          )}
           {/* Overlay gradient on hover */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
@@ -395,21 +488,37 @@ function MenuItemCard({
         </div>
       )}
       <div className="flex justify-between items-start gap-4">
-        <div>
-          <div className="flex items-center gap-2">
+        <div className="flex-grow">
+          <div className="flex items-center gap-2 flex-wrap">
             <h4 className="font-medium text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
               {item.name}
             </h4>
-            {item.tag && (
+            {/* Legacy tag */}
+            {item.tag && !item.dietary && (
               <span className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
                 {item.tag}
               </span>
+            )}
+            {/* Dietary badges (if no image shown) */}
+            {showDietary && !showImage && item.dietary && item.dietary.length > 0 && (
+              <DietaryBadges types={item.dietary} size="sm" variant="filled" />
+            )}
+            {showDietary && item.spicyLevel && item.spicyLevel > 0 && (
+              <SpicyMeter level={item.spicyLevel} size="sm" />
+            )}
+            {showCalories && item.calories && (
+              <span className="text-xs text-neutral-500">{item.calories} cal</span>
             )}
           </div>
           {item.description && (
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
               {item.description}
             </p>
+          )}
+          {showAllergens && item.allergens && item.allergens.length > 0 && (
+            <div className="mt-2">
+              <AllergenList allergens={item.allergens} variant="icons-only" size="sm" />
+            </div>
           )}
         </div>
         {(!showImage || !item.image) && (

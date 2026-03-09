@@ -11,7 +11,8 @@ A UI kit for building beautiful websites with Claude Code. Editorial design styl
 This starts an interactive wizard that:
 1. Asks your industry (SaaS, Restaurant, Agency, Portfolio, E-commerce)
 2. Collects your business info
-3. Builds a complete, customized website automatically
+3. Creates a new folder for your website (e.g., `app/bella-italia/`)
+4. Builds a complete, customized website automatically
 
 **Industry Templates** — Pre-built content, photos, and structure for your specific niche. No lorem ipsum.
 
@@ -91,22 +92,11 @@ Container:             container mx-auto px-6
 ```
 app/
 ├── page.tsx              # UI Kit landing (don't modify)
+├── components/           # Component gallery
 ├── globals.css           # Design tokens
-└── demo/                 # Your website
-    ├── layout.tsx        # Navbar + footer
-    ├── page.tsx          # Homepage
-    ├── about/            # About page
-    ├── blog/             # Blog overview
-    ├── components/       # Component showcase
-    ├── contact/          # Contact form
-    ├── portfolio/        # Project showcase
-    ├── pricing/          # Pricing plans
-    ├── services/         # Services overview
-    ├── team/             # Team members
-    ├── privacy/          # Privacy Policy (template)
-    └── terms/            # Terms of Service (template)
+└── demo/                 # Example website template
 
-components/ui/            # 45+ components
+components/ui/            # 70+ components
 ├── Button, Badge, Card, Input, Tabs, Modal...
 ├── BentoGrid, Marquee, SpotlightCard, PricingTable...
 ├── ProjectCard, BlogCard, TeamCard, CommandPalette...
@@ -118,11 +108,16 @@ components/ui/            # 45+ components
 ├── MenuSection, OpeningHours, ReservationCTA (restaurant)
 ├── ProductCard, ProductGrid, CollectionCard (e-commerce)
 ├── NewsletterSignup, AvailabilityBadge (email capture)
+├── NavMenu (7 navigation variants)
+├── Alert, Banner, TopBanner, Callout (notifications)
+├── DietaryBadges (restaurant dietary indicators)
 ├── CookieBanner (GDPR-compliant, auto-included)
 └── Map (OpenStreetMap, no API key needed)
-```
 
-**Adding pages:** Create `app/demo/[name]/page.tsx` with `"use client"` directive.
+.claude/
+├── COMPONENTS.md         # Component reference for website building
+└── skills/               # Slash command implementations
+```
 
 ---
 

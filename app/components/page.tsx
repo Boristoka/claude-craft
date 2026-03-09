@@ -14,6 +14,38 @@ import { MenuSection, OpeningHours } from "@/components/ui/MenuSection";
 import { ProductCard, ProductGrid } from "@/components/ui/ProductCard";
 import { TrustBadges, TrustIcons } from "@/components/ui/LogoCloud";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
+import {
+  NavMenuMinimal,
+  NavMenuCentered,
+  NavMenuFloating,
+  NavMenuSplit,
+  NavMenuTransparent,
+  NavMenuDark,
+  NavMenuWithDropdown,
+} from "@/components/ui/NavMenu";
+
+// Demo nav items for showcasing navigation menus
+const demoNavItems = [
+  { label: "Home", href: "#" },
+  { label: "Features", href: "#" },
+  { label: "Pricing", href: "#" },
+  { label: "About", href: "#" },
+];
+
+const demoNavItemsWithDropdown = [
+  { label: "Home", href: "#" },
+  {
+    label: "Products",
+    href: "#",
+    children: [
+      { label: "Analytics", href: "#" },
+      { label: "Automation", href: "#" },
+      { label: "Integrations", href: "#" },
+    ]
+  },
+  { label: "Pricing", href: "#" },
+  { label: "About", href: "#" },
+];
 
 export default function ComponentsShowcase() {
   return (
@@ -32,8 +64,150 @@ export default function ComponentsShowcase() {
         </div>
       </section>
 
-      {/* Command Palette Demo */}
+      {/* Navigation Menus Demo */}
       <section className="py-20 bg-white dark:bg-neutral-950">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp">
+            <div className="max-w-2xl mb-12">
+              <Badge className="mb-4">Navigation</Badge>
+              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
+                Navigation Menus
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                7 premium navigation variants. Each with mobile support, animations, and dark mode.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="grid gap-8">
+            {/* Minimal */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.1}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuMinimal</span>
+                </div>
+                <div className="bg-white dark:bg-neutral-900 p-0">
+                  <NavMenuMinimal
+                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
+                    items={demoNavItems}
+                    cta={{ label: "Get Started", href: "#" }}
+                  />
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Centered */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.15}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuCentered</span>
+                </div>
+                <div className="bg-white dark:bg-neutral-900 p-0">
+                  <NavMenuCentered
+                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
+                    items={demoNavItems}
+                    cta={{ label: "Sign Up", href: "#" }}
+                  />
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Floating */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.2}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuFloating</span>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-900 p-6">
+                  <NavMenuFloating
+                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
+                    items={demoNavItems}
+                    cta={{ label: "Contact", href: "#" }}
+                  />
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Split */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.25}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuSplit</span>
+                </div>
+                <div className="bg-white dark:bg-neutral-900 p-0">
+                  <NavMenuSplit
+                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
+                    items={demoNavItems}
+                    cta={{ label: "Book Now", href: "#" }}
+                  />
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Transparent */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.3}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuTransparent</span>
+                </div>
+                <div
+                  className="relative p-0 min-h-[80px]"
+                  style={{
+                    backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-neutral-900/40" />
+                  <div className="relative">
+                    <NavMenuTransparent
+                      logo={<span className="font-semibold text-white">Brand</span>}
+                      items={demoNavItems}
+                      cta={{ label: "Get Started", href: "#" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Dark */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.35}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuDark</span>
+                </div>
+                <div className="bg-neutral-900 p-0">
+                  <NavMenuDark
+                    logo={<span className="font-semibold text-white">Brand</span>}
+                    items={demoNavItems}
+                    cta={{ label: "Sign Up", href: "#" }}
+                  />
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* With Dropdown */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.4}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuWithDropdown</span>
+                  <span className="text-xs text-neutral-400 dark:text-neutral-500 ml-2">(hover "Products")</span>
+                </div>
+                <div className="bg-white dark:bg-neutral-900 p-0">
+                  <NavMenuWithDropdown
+                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
+                    items={demoNavItemsWithDropdown}
+                    cta={{ label: "Get Started", href: "#" }}
+                  />
+                </div>
+              </div>
+            </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
+      {/* Command Palette Demo */}
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-900">
         <div className="container mx-auto px-6">
           <AnimateOnScroll animation="fadeInUp">
             <div className="max-w-2xl mb-12">

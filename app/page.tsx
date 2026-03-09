@@ -489,8 +489,8 @@ export default function LandingPage() {
                 {/* Preview image */}
                 <div className="aspect-[16/9] bg-gradient-to-br from-primary-50 via-white to-accent-50 relative">
                   <img
-                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80"
-                    alt="Demo preview - Modern agency workspace"
+                    src="/demo-preview.jpg"
+                    alt="Claude Craft demo - Acme Studio website"
                     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                   />
 

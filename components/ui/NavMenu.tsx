@@ -79,7 +79,7 @@ export function NavMenuMinimal({
           <div className="hidden md:flex items-center gap-8">
             {items.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className={cn("text-sm font-medium transition-colors", textClasses[variant])}
               >
@@ -133,7 +133,7 @@ export function NavMenuMinimal({
               <div className="py-4 space-y-2">
                 {items.map((item) => (
                   <Link
-                    key={item.href}
+                    key={item.label}
                     href={item.href}
                     className={cn("block py-2 text-sm font-medium", textClasses[variant])}
                     onClick={() => setMobileOpen(false)}
@@ -186,7 +186,7 @@ export function NavMenuCentered({
           <div className="hidden md:flex items-center gap-8 flex-1">
             {leftItems.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
               >
@@ -210,7 +210,7 @@ export function NavMenuCentered({
           <div className="hidden md:flex items-center gap-8 flex-1 justify-end">
             {rightItems.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
               >
@@ -250,7 +250,7 @@ export function NavMenuCentered({
             >
               {items.map((item) => (
                 <Link
-                  key={item.href}
+                  key={item.label}
                   href={item.href}
                   className="block py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900"
                   onClick={() => setMobileOpen(false)}
@@ -331,7 +331,7 @@ export function NavMenuFloating({
         {/* Navigation Items */}
         {items.map((item) => (
           <Link
-            key={item.href}
+            key={item.label}
             href={item.href}
             className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors"
           >
@@ -384,7 +384,7 @@ export function NavMenuSplit({
           <div className="hidden md:flex items-center justify-center flex-1 gap-1">
             {items.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 rounded-lg transition-colors"
               >
@@ -435,7 +435,7 @@ export function NavMenuSplit({
             >
               {items.map((item) => (
                 <Link
-                  key={item.href}
+                  key={item.label}
                   href={item.href}
                   className="block py-2 text-sm font-medium text-neutral-600"
                   onClick={() => setMobileOpen(false)}
@@ -507,7 +507,7 @@ export function NavMenuTransparent({
           <div className="hidden md:flex items-center gap-8">
             {items.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className={cn(
                   "text-sm font-medium transition-colors",
@@ -564,7 +564,7 @@ export function NavMenuTransparent({
               <div className="p-4 space-y-2">
                 {items.map((item) => (
                   <Link
-                    key={item.href}
+                    key={item.label}
                     href={item.href}
                     className="block py-2 px-4 text-sm font-medium text-neutral-600 hover:bg-neutral-50 rounded-lg"
                     onClick={() => setMobileOpen(false)}
@@ -622,7 +622,7 @@ export function NavMenuWithDropdown({
           <div className="hidden md:flex items-center gap-1">
             {items.map((item) => (
               <div
-                key={item.href}
+                key={item.label}
                 className="relative"
                 onMouseEnter={() => item.children && setOpenDropdown(item.label)}
                 onMouseLeave={() => setOpenDropdown(null)}
@@ -650,7 +650,7 @@ export function NavMenuWithDropdown({
                     >
                       {item.children.map((child) => (
                         <Link
-                          key={child.href}
+                          key={child.label}
                           href={child.href}
                           className="block px-4 py-2 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50"
                         >
@@ -697,7 +697,7 @@ export function NavMenuWithDropdown({
               className="md:hidden border-t border-neutral-200 py-4"
             >
               {items.map((item) => (
-                <div key={item.href}>
+                <div key={item.label}>
                   <Link
                     href={item.href}
                     className="block py-2 text-sm font-medium text-neutral-600"
@@ -709,7 +709,7 @@ export function NavMenuWithDropdown({
                     <div className="pl-4 mt-1 space-y-1">
                       {item.children.map((child) => (
                         <Link
-                          key={child.href}
+                          key={child.label}
                           href={child.href}
                           className="block py-1 text-sm text-neutral-500"
                           onClick={() => setMobileOpen(false)}
@@ -760,7 +760,7 @@ export function NavMenuDark({
           <div className="hidden md:flex items-center gap-8">
             {items.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="text-sm font-medium text-neutral-400 hover:text-white transition-colors"
               >
@@ -803,7 +803,7 @@ export function NavMenuDark({
             >
               {items.map((item) => (
                 <Link
-                  key={item.href}
+                  key={item.label}
                   href={item.href}
                   className="block py-2 text-sm font-medium text-neutral-400 hover:text-white"
                   onClick={() => setMobileOpen(false)}
@@ -858,7 +858,7 @@ export function NavMenuVercel({
           >
             {items.map((item, index) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="relative px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors z-10"
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -951,7 +951,7 @@ export function NavMenuGlass({
             >
               {items.map((item, index) => (
                 <Link
-                  key={item.href}
+                  key={item.label}
                   href={item.href}
                   className="relative px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors z-10"
                   onMouseEnter={() => setHoveredIndex(index)}
@@ -1060,7 +1060,7 @@ export function NavMenuMagnetic({
           <div className="hidden md:flex items-center gap-2">
             {items.map((item) => (
               <MagneticLink
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="group relative px-5 py-3 text-sm font-medium text-neutral-400 hover:text-white transition-colors inline-block"
               >
@@ -1162,7 +1162,7 @@ export function NavMenuStripe({
           >
             {items.map((item, index) => (
               <div
-                key={item.href}
+                key={item.label}
                 className="relative"
                 onMouseEnter={() => item.children && setActiveDropdown(index)}
               >
@@ -1215,7 +1215,7 @@ export function NavMenuStripe({
                 >
                   {items.map((item, index) => (
                     <div
-                      key={item.href}
+                      key={item.label}
                       ref={(el) => { dropdownRefs.current[index] = el; }}
                       className={cn(
                         "p-4",
@@ -1226,7 +1226,7 @@ export function NavMenuStripe({
                         <div className="grid gap-2 min-w-[280px]">
                           {item.children.map((child) => (
                             <Link
-                              key={child.href}
+                              key={child.label}
                               href={child.href}
                               className="flex items-start gap-3 p-3 rounded-xl hover:bg-neutral-50 transition-colors group"
                             >
@@ -1307,7 +1307,7 @@ export function NavMenuUnderline({
           >
             {items.map((item, index) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="relative py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
                 onMouseEnter={() => setHoveredIndex(index)}

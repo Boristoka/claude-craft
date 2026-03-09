@@ -818,3 +818,524 @@ export function NavMenuDark({
     </nav>
   );
 }
+
+// ============================================================================
+// PREMIUM VARIANTS
+// ============================================================================
+
+// ============================================================================
+// NavMenuVercel - Sliding pill indicator (Vercel-style)
+// ============================================================================
+
+export function NavMenuVercel({
+  items,
+  logo,
+  cta,
+  className,
+}: NavMenuBaseProps) {
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  return (
+    <nav className={cn("bg-white border-b border-neutral-200", className)}>
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-14">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            {typeof logo === "string" ? (
+              <Link href="/" className="font-semibold text-neutral-900">
+                {logo}
+              </Link>
+            ) : (
+              logo
+            )}
+          </div>
+
+          {/* Navigation with sliding indicator */}
+          <div
+            className="hidden md:flex items-center gap-1 relative"
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            {items.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors z-10"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onClick={() => setActiveIndex(index)}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+            {/* Sliding pill indicator */}
+            <motion.div
+              className="absolute inset-y-0 bg-neutral-100 rounded-lg -z-0"
+              initial={false}
+              animate={{
+                x: `${(hoveredIndex ?? activeIndex) * 100}%`,
+                width: `${100 / items.length}%`,
+                opacity: hoveredIndex !== null ? 1 : 0.5,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 350,
+                damping: 30,
+              }}
+              style={{
+                left: 0,
+                width: `calc(100% / ${items.length})`,
+              }}
+            />
+          </div>
+
+          {/* CTA */}
+          <div className="hidden md:block">
+            {cta && (
+              <Link
+                href={cta.href}
+                className="px-4 py-2 bg-neutral-900 text-white rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors"
+              >
+                {cta.label}
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ============================================================================
+// NavMenuGlass - Glassmorphism navigation
+// ============================================================================
+
+export function NavMenuGlass({
+  items,
+  logo,
+  cta,
+  className,
+}: NavMenuBaseProps) {
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+
+  return (
+    <nav className={cn("relative", className)}>
+      <div className="mx-auto px-4 py-3">
+        <div className="flex items-center justify-center">
+          <motion.div
+            className="flex items-center gap-1 px-2 py-2 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Logo */}
+            {logo && (
+              <>
+                <div className="px-3">
+                  {typeof logo === "string" ? (
+                    <Link href="/" className="font-semibold text-white">
+                      {logo}
+                    </Link>
+                  ) : (
+                    logo
+                  )}
+                </div>
+                <div className="w-px h-6 bg-white/20" />
+              </>
+            )}
+
+            {/* Navigation Items */}
+            <div
+              className="flex items-center relative"
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {items.map((item, index) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="relative px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors z-10"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+
+              {/* Glow effect on hover */}
+              <AnimatePresence>
+                {hoveredIndex !== null && (
+                  <motion.div
+                    className="absolute inset-y-0 bg-white/10 rounded-xl"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    layoutId="glass-hover"
+                    style={{
+                      left: `${(hoveredIndex / items.length) * 100}%`,
+                      width: `${100 / items.length}%`,
+                    }}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* CTA */}
+            {cta && (
+              <>
+                <div className="w-px h-6 bg-white/20" />
+                <Link
+                  href={cta.href}
+                  className="ml-1 px-4 py-2 bg-white text-neutral-900 rounded-xl text-sm font-medium hover:bg-white/90 transition-colors"
+                >
+                  {cta.label}
+                </Link>
+              </>
+            )}
+          </motion.div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ============================================================================
+// NavMenuMagnetic - Magnetic hover effect
+// ============================================================================
+
+function MagneticLink({ children, href, className }: { children: React.ReactNode; href: string; className?: string }) {
+  const ref = React.useRef<HTMLAnchorElement>(null);
+  const [position, setPosition] = React.useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const distanceX = (e.clientX - centerX) * 0.3;
+    const distanceY = (e.clientY - centerY) * 0.3;
+    setPosition({ x: distanceX, y: distanceY });
+  };
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      className={className}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+    >
+      {children}
+    </motion.a>
+  );
+}
+
+export function NavMenuMagnetic({
+  items,
+  logo,
+  cta,
+  className,
+}: NavMenuBaseProps) {
+  return (
+    <nav className={cn("bg-neutral-950", className)}>
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            {typeof logo === "string" ? (
+              <MagneticLink href="/" className="font-semibold text-xl text-white inline-block">
+                {logo}
+              </MagneticLink>
+            ) : (
+              logo
+            )}
+          </div>
+
+          {/* Navigation Items with magnetic effect */}
+          <div className="hidden md:flex items-center gap-2">
+            {items.map((item) => (
+              <MagneticLink
+                key={item.href}
+                href={item.href}
+                className="group relative px-5 py-3 text-sm font-medium text-neutral-400 hover:text-white transition-colors inline-block"
+              >
+                <span className="relative z-10">{item.label}</span>
+                <motion.span
+                  className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100"
+                  layoutId="magnetic-bg"
+                  transition={{ duration: 0.2 }}
+                />
+              </MagneticLink>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="hidden md:block">
+            {cta && (
+              <MagneticLink
+                href={cta.href}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-neutral-900 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors"
+              >
+                {cta.label}
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </MagneticLink>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ============================================================================
+// NavMenuStripe - Morphing dropdown (Stripe-style)
+// ============================================================================
+
+interface StripeDropdownItem {
+  label: string;
+  href: string;
+  description?: string;
+  icon?: React.ReactNode;
+}
+
+interface NavMenuStripeProps {
+  items: {
+    label: string;
+    href: string;
+    children?: StripeDropdownItem[];
+  }[];
+  logo?: React.ReactNode;
+  cta?: { label: string; href: string };
+  className?: string;
+}
+
+export function NavMenuStripe({
+  items,
+  logo,
+  cta,
+  className,
+}: NavMenuStripeProps) {
+  const [activeDropdown, setActiveDropdown] = React.useState<number | null>(null);
+  const [dropdownDimensions, setDropdownDimensions] = React.useState({ width: 0, height: 0 });
+  const dropdownRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+
+  React.useEffect(() => {
+    if (activeDropdown !== null && dropdownRefs.current[activeDropdown]) {
+      const el = dropdownRefs.current[activeDropdown];
+      if (el) {
+        setDropdownDimensions({
+          width: el.offsetWidth,
+          height: el.offsetHeight,
+        });
+      }
+    }
+  }, [activeDropdown]);
+
+  const activeItem = activeDropdown !== null ? items[activeDropdown] : null;
+
+  return (
+    <nav className={cn("bg-white border-b border-neutral-100", className)}>
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            {typeof logo === "string" ? (
+              <Link href="/" className="font-bold text-xl text-neutral-900">
+                {logo}
+              </Link>
+            ) : (
+              logo
+            )}
+          </div>
+
+          {/* Navigation */}
+          <div
+            className="hidden md:flex items-center gap-1 relative"
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            {items.map((item, index) => (
+              <div
+                key={item.href}
+                className="relative"
+                onMouseEnter={() => item.children && setActiveDropdown(index)}
+              >
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors",
+                    activeDropdown === index
+                      ? "text-neutral-900 bg-neutral-100"
+                      : "text-neutral-600 hover:text-neutral-900"
+                  )}
+                >
+                  {item.label}
+                  {item.children && (
+                    <motion.svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      animate={{ rotate: activeDropdown === index ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  )}
+                </Link>
+              </div>
+            ))}
+
+            {/* Morphing dropdown container */}
+            <AnimatePresence>
+              {activeDropdown !== null && activeItem?.children && (
+                <motion.div
+                  className="absolute top-full left-0 mt-2 bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden"
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    width: dropdownDimensions.width || "auto",
+                    height: dropdownDimensions.height || "auto",
+                  }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{
+                    duration: 0.2,
+                    width: { duration: 0.25, ease: [0.4, 0, 0.2, 1] },
+                    height: { duration: 0.25, ease: [0.4, 0, 0.2, 1] },
+                  }}
+                  style={{ transformOrigin: "top left" }}
+                >
+                  {items.map((item, index) => (
+                    <div
+                      key={item.href}
+                      ref={(el) => { dropdownRefs.current[index] = el; }}
+                      className={cn(
+                        "p-4",
+                        activeDropdown !== index && "hidden"
+                      )}
+                    >
+                      {item.children && (
+                        <div className="grid gap-2 min-w-[280px]">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className="flex items-start gap-3 p-3 rounded-xl hover:bg-neutral-50 transition-colors group"
+                            >
+                              {child.icon && (
+                                <div className="w-10 h-10 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-600 group-hover:bg-neutral-200 transition-colors">
+                                  {child.icon}
+                                </div>
+                              )}
+                              <div>
+                                <div className="font-medium text-neutral-900 text-sm">
+                                  {child.label}
+                                </div>
+                                {child.description && (
+                                  <div className="text-xs text-neutral-500 mt-0.5">
+                                    {child.description}
+                                  </div>
+                                )}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* CTA */}
+          <div className="hidden md:block">
+            {cta && (
+              <Link
+                href={cta.href}
+                className="px-4 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-lg text-sm font-medium hover:from-violet-700 hover:to-indigo-700 transition-all shadow-lg shadow-violet-500/25"
+              >
+                {cta.label}
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ============================================================================
+// NavMenuUnderline - Animated underline effect
+// ============================================================================
+
+export function NavMenuUnderline({
+  items,
+  logo,
+  cta,
+  className,
+}: NavMenuBaseProps) {
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+
+  return (
+    <nav className={cn("bg-white", className)}>
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-20 border-b border-neutral-100">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            {typeof logo === "string" ? (
+              <Link href="/" className="font-serif text-2xl text-neutral-900">
+                {logo}
+              </Link>
+            ) : (
+              logo
+            )}
+          </div>
+
+          {/* Navigation with animated underline */}
+          <div
+            className="hidden md:flex items-center gap-10"
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            {items.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
+                onMouseEnter={() => setHoveredIndex(index)}
+              >
+                {item.label}
+                <motion.div
+                  className="absolute bottom-0 left-0 h-0.5 bg-neutral-900"
+                  initial={{ width: 0 }}
+                  animate={{ width: hoveredIndex === index ? "100%" : 0 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                />
+              </Link>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="hidden md:block">
+            {cta && (
+              <Link
+                href={cta.href}
+                className="px-6 py-2.5 border-2 border-neutral-900 text-neutral-900 text-sm font-medium hover:bg-neutral-900 hover:text-white transition-colors"
+              >
+                {cta.label}
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}

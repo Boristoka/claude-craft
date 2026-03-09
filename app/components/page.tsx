@@ -22,6 +22,11 @@ import {
   NavMenuTransparent,
   NavMenuDark,
   NavMenuWithDropdown,
+  NavMenuVercel,
+  NavMenuGlass,
+  NavMenuMagnetic,
+  NavMenuStripe,
+  NavMenuUnderline,
 } from "@/components/ui/NavMenu";
 
 // Demo nav items for showcasing navigation menus
@@ -47,6 +52,74 @@ const demoNavItemsWithDropdown = [
   { label: "About", href: "#" },
 ];
 
+// Stripe-style nav items with icons and descriptions
+const stripeNavItems = [
+  { label: "Home", href: "#" },
+  {
+    label: "Products",
+    href: "#",
+    children: [
+      {
+        label: "Analytics",
+        href: "#",
+        description: "Track performance metrics",
+        icon: (
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        ),
+      },
+      {
+        label: "Automation",
+        href: "#",
+        description: "Streamline your workflows",
+        icon: (
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        ),
+      },
+      {
+        label: "Integrations",
+        href: "#",
+        description: "Connect your favorite tools",
+        icon: (
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+          </svg>
+        ),
+      },
+    ],
+  },
+  {
+    label: "Solutions",
+    href: "#",
+    children: [
+      {
+        label: "For Startups",
+        href: "#",
+        description: "Scale your business fast",
+        icon: (
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        ),
+      },
+      {
+        label: "Enterprise",
+        href: "#",
+        description: "Advanced security & support",
+        icon: (
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        ),
+      },
+    ],
+  },
+  { label: "Pricing", href: "#" },
+];
+
 export default function ComponentsShowcase() {
   return (
     <div className="min-h-screen">
@@ -64,140 +137,107 @@ export default function ComponentsShowcase() {
         </div>
       </section>
 
-      {/* Navigation Menus Demo */}
+      {/* Navigation Menus Demo - Premium Variants */}
       <section className="py-20 bg-white dark:bg-neutral-950">
         <div className="container mx-auto px-6">
           <AnimateOnScroll animation="fadeInUp">
             <div className="max-w-2xl mb-12">
               <Badge className="mb-4">Navigation</Badge>
               <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
-                Navigation Menus
+                Premium Navigation Menus
               </h2>
               <p className="text-neutral-600 dark:text-neutral-400">
-                7 premium navigation variants. Each with mobile support, animations, and dark mode.
+                Inspired by Vercel, Stripe, and Awwwards-winning sites. Hover to see the magic.
               </p>
             </div>
           </AnimateOnScroll>
 
           <div className="grid gap-8">
-            {/* Minimal */}
+            {/* Vercel-style sliding indicator */}
             <AnimateOnScroll animation="fadeInUp" delay={0.1}>
               <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuMinimal</span>
+                <div className="px-4 py-2 bg-gradient-to-r from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-bold text-neutral-900 dark:text-white">NavMenuVercel</span>
+                  <span className="text-xs text-neutral-500 dark:text-neutral-400 ml-2">— Sliding pill indicator</span>
                 </div>
                 <div className="bg-white dark:bg-neutral-900 p-0">
-                  <NavMenuMinimal
-                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
+                  <NavMenuVercel
+                    logo={<span className="font-semibold text-neutral-900">Vercel</span>}
                     items={demoNavItems}
-                    cta={{ label: "Get Started", href: "#" }}
+                    cta={{ label: "Deploy", href: "#" }}
                   />
                 </div>
               </div>
             </AnimateOnScroll>
 
-            {/* Centered */}
+            {/* Stripe-style morphing dropdown */}
             <AnimateOnScroll animation="fadeInUp" delay={0.15}>
               <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuCentered</span>
+                <div className="px-4 py-2 bg-gradient-to-r from-violet-100 to-indigo-50 dark:from-violet-900/30 dark:to-indigo-900/30 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-bold text-violet-900 dark:text-violet-300">NavMenuStripe</span>
+                  <span className="text-xs text-violet-600 dark:text-violet-400 ml-2">— Morphing dropdown (hover Products/Solutions)</span>
                 </div>
-                <div className="bg-white dark:bg-neutral-900 p-0">
-                  <NavMenuCentered
-                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
-                    items={demoNavItems}
-                    cta={{ label: "Sign Up", href: "#" }}
+                <div className="bg-white dark:bg-neutral-900 p-0 min-h-[200px]">
+                  <NavMenuStripe
+                    logo={<span className="font-bold text-neutral-900">Stripe</span>}
+                    items={stripeNavItems}
+                    cta={{ label: "Start now", href: "#" }}
                   />
                 </div>
               </div>
             </AnimateOnScroll>
 
-            {/* Floating */}
+            {/* Glassmorphism */}
             <AnimateOnScroll animation="fadeInUp" delay={0.2}>
               <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuFloating</span>
-                </div>
-                <div className="bg-neutral-50 dark:bg-neutral-900 p-6">
-                  <NavMenuFloating
-                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
-                    items={demoNavItems}
-                    cta={{ label: "Contact", href: "#" }}
-                  />
-                </div>
-              </div>
-            </AnimateOnScroll>
-
-            {/* Split */}
-            <AnimateOnScroll animation="fadeInUp" delay={0.25}>
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuSplit</span>
-                </div>
-                <div className="bg-white dark:bg-neutral-900 p-0">
-                  <NavMenuSplit
-                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
-                    items={demoNavItems}
-                    cta={{ label: "Book Now", href: "#" }}
-                  />
-                </div>
-              </div>
-            </AnimateOnScroll>
-
-            {/* Transparent */}
-            <AnimateOnScroll animation="fadeInUp" delay={0.3}>
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuTransparent</span>
+                <div className="px-4 py-2 bg-gradient-to-r from-cyan-100 to-blue-50 dark:from-cyan-900/30 dark:to-blue-900/30 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-bold text-cyan-900 dark:text-cyan-300">NavMenuGlass</span>
+                  <span className="text-xs text-cyan-600 dark:text-cyan-400 ml-2">— Glassmorphism with blur</span>
                 </div>
                 <div
-                  className="relative p-0 min-h-[80px]"
+                  className="relative py-8"
                   style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    backgroundImage: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                   }}
                 >
-                  <div className="absolute inset-0 bg-neutral-900/40" />
-                  <div className="relative">
-                    <NavMenuTransparent
-                      logo={<span className="font-semibold text-white">Brand</span>}
-                      items={demoNavItems}
-                      cta={{ label: "Get Started", href: "#" }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </AnimateOnScroll>
-
-            {/* Dark */}
-            <AnimateOnScroll animation="fadeInUp" delay={0.35}>
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuDark</span>
-                </div>
-                <div className="bg-neutral-900 p-0">
-                  <NavMenuDark
-                    logo={<span className="font-semibold text-white">Brand</span>}
+                  <NavMenuGlass
+                    logo={<span className="font-semibold text-white">Glass</span>}
                     items={demoNavItems}
-                    cta={{ label: "Sign Up", href: "#" }}
+                    cta={{ label: "Get Started", href: "#" }}
                   />
                 </div>
               </div>
             </AnimateOnScroll>
 
-            {/* With Dropdown */}
-            <AnimateOnScroll animation="fadeInUp" delay={0.4}>
+            {/* Magnetic hover */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.25}>
               <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-                  <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">NavMenuWithDropdown</span>
-                  <span className="text-xs text-neutral-400 dark:text-neutral-500 ml-2">(hover "Products")</span>
+                <div className="px-4 py-2 bg-gradient-to-r from-neutral-900 to-neutral-800 border-b border-neutral-700">
+                  <span className="text-xs font-bold text-white">NavMenuMagnetic</span>
+                  <span className="text-xs text-neutral-400 ml-2">— Items pull towards cursor</span>
+                </div>
+                <div className="bg-neutral-950 p-0">
+                  <NavMenuMagnetic
+                    logo={<span className="font-bold text-white">Magnetic</span>}
+                    items={demoNavItems}
+                    cta={{ label: "Let's talk", href: "#" }}
+                  />
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Animated underline */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.3}>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+                <div className="px-4 py-2 bg-neutral-50 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs font-bold text-neutral-900 dark:text-white">NavMenuUnderline</span>
+                  <span className="text-xs text-neutral-500 dark:text-neutral-400 ml-2">— Elegant expanding underline</span>
                 </div>
                 <div className="bg-white dark:bg-neutral-900 p-0">
-                  <NavMenuWithDropdown
-                    logo={<span className="font-semibold text-neutral-900 dark:text-white">Brand</span>}
-                    items={demoNavItemsWithDropdown}
-                    cta={{ label: "Get Started", href: "#" }}
+                  <NavMenuUnderline
+                    logo={<span className="font-serif text-xl text-neutral-900">Editorial</span>}
+                    items={demoNavItems}
+                    cta={{ label: "Subscribe", href: "#" }}
                   />
                 </div>
               </div>

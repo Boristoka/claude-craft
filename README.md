@@ -44,50 +44,47 @@ npm run dev
 
 1. **Clone this project**
 2. **Open Claude Code** in the project folder
-3. **Use the slash commands** to get started quickly
+3. **Type `/website`** - that's it!
 
-### Slash Commands
-
-| Command | What it does |
-|---------|--------------|
-| `/website` | Start an interactive wizard that builds your website |
-| `/page [type]` | Add a page (pricing, portfolio, blog, faq) |
-
-### How `/website` works
+### The `/website` Wizard
 
 ```
 You: /website
 
-Claude: I'm going to build a complete website for you. First, a few questions:
-        Business name? Location? What do you do?
+Claude: 🚀 Let's build your website!
+        1. Business name?
+        2. What do you do?
+        3. Location?
+        4. What makes you special?
 
-You: Golden Crust Bakery, Austin, artisan bread and pastries
+You: Golden Crust Bakery, artisan bread and pastries in Austin.
+     Family business since 1952, everything handmade.
 
-Claude: What are your main products/services?
+Claude: Which pages do you want?
+        ✅ Homepage, About, Services, Contact (always)
+        📁 Portfolio? 📝 Blog? 👥 Team? 💰 Pricing?
 
-You: Sourdough bread, custom cakes, breakfast catering
+You: Add portfolio and team
 
-Claude: What makes you unique?
+Claude: What's your vibe? Professional / Warm / Modern / Creative / Premium
 
-You: Family business since 1952, everything handmade, local ingredients
+You: Warm & personal
 
-Claude: [Generates complete 4-page website]
+Claude: Building now... ✅ Done!
+        View at: http://localhost:3000/demo
 ```
 
-**Adding more pages:**
+**Adding more pages later:**
 ```
 /page pricing
-/page portfolio
 /page blog
 ```
 
-### Manual adjustments
-
-You can also ask directly:
+**Making changes:**
 ```
 "Change the colors to blue"
-"Add a testimonials section"
-"Make the hero centered"
+"Add more team members"
+"Make the headline shorter"
 ```
 
 ---
@@ -109,6 +106,11 @@ You can also ask directly:
 | `/demo/about` | About page |
 | `/demo/services` | Services overview |
 | `/demo/contact` | Contact form |
+| `/demo/portfolio` | Project showcase |
+| `/demo/blog` | Blog overview |
+| `/demo/team` | Team members |
+| `/demo/components` | Component showcase |
+| `/404` | Custom "not found" page |
 
 ### Components
 
@@ -118,12 +120,32 @@ You can also ask directly:
 - `Input` / `Textarea` - Form elements
 - `Card` - Content containers
 
+**Premium Components**
+- `BentoGrid` - Asymmetric grid layout (Apple/Linear style)
+- `Marquee` - Infinite scrolling logos/testimonials
+- `SpotlightCard` - Cursor-following glow effect
+- `PricingTable` - Monthly/yearly toggle pricing
+- `CommandPalette` - Cmd+K search interface
+- `ProjectCard` - Portfolio project cards with 3D tilt
+- `BlogCard` - Blog post cards with author
+- `TeamCard` - Team member cards with social links
+
 **Animation**
 - `AnimateOnScroll` - Scroll-triggered animations
 - `CountUp` - Counting numbers
 
 **Layout**
 - `Footer` - Multi-column footer
+- `ThemeSwitcher` - Dark mode and theme toggle
+- `CookieBanner` - GDPR-compliant cookie consent (auto-included)
+- `Map` - Interactive OpenStreetMap (no API key needed)
+
+**SEO (2026 Best Practices)**
+- JSON-LD structured data (Organization, LocalBusiness, Article, FAQ, etc.)
+- Dynamic sitemap generation (`/sitemap.xml`)
+- Robots.txt configuration (`/robots.txt`)
+- Full OpenGraph and Twitter card support
+- Core Web Vitals optimized
 
 ---
 
@@ -191,15 +213,26 @@ claude-craft/
 │       ├── layout.tsx        # Demo layout (navbar/footer)
 │       ├── page.tsx          # Homepage
 │       ├── about/page.tsx
+│       ├── blog/page.tsx
+│       ├── components/page.tsx
+│       ├── contact/page.tsx
+│       ├── portfolio/page.tsx
 │       ├── services/page.tsx
-│       └── contact/page.tsx
+│       └── team/page.tsx
 ├── components/
-│   ├── ui/                   # UI components
+│   ├── ui/                   # UI components (29 components)
 │   └── layout/               # Layout components
 ├── .claude/
-│   └── commands/             # Slash commands
-│       ├── website.md
-│       └── page.md
+│   └── commands/             # Slash commands (9 commands)
+│       ├── website.md        # Generate complete website
+│       ├── page.md           # Add individual pages
+│       ├── components.md     # Component usage examples
+│       ├── patterns.md       # Section patterns
+│       ├── photos.md         # Stock photo URLs
+│       ├── help.md           # Getting started
+│       ├── darkmode.md       # Enable dark mode
+│       ├── theme.md          # Color theme presets
+│       └── forms.md          # Form validation guide
 ├── CLAUDE.md                 # Claude Code instructions
 └── README.md
 ```

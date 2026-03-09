@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { AnimateOnScroll, CountUp } from "@/components/ui/AnimateOnScroll";
+import { TestimonialGrid } from "@/components/ui/TestimonialCard";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -38,20 +39,26 @@ const testimonials = [
   {
     quote: "The collaboration was excellent. They truly understand what a business needs and always deliver quality.",
     author: "Sarah Mitchell",
-    role: "CEO, TechStart",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+    role: "CEO",
+    company: "TechStart",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+    rating: 5 as const,
   },
   {
     quote: "Our new website has completely transformed our online presence. The results speak for themselves.",
     author: "Michael Chen",
-    role: "Founder, GrowthLab",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+    role: "Founder",
+    company: "GrowthLab",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+    rating: 5 as const,
   },
   {
     quote: "Professional, creative, and reliable. Exactly what we were looking for in our digital transformation.",
     author: "Emily Johnson",
-    role: "Marketing Director, Bloom",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+    role: "Marketing Director",
+    company: "Bloom",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+    rating: 5 as const,
   },
 ];
 
@@ -77,7 +84,7 @@ export default function DemoHome() {
       {/* ========================================
           HERO - Full bleed with parallax
           ======================================== */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] overflow-hidden -mt-20">
+      <section ref={heroRef} className="relative h-screen min-h-[700px] overflow-hidden -mt-[88px]">
         {/* Background Image with Parallax */}
         <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
           <img
@@ -261,45 +268,17 @@ export default function DemoHome() {
       </section>
 
       {/* ========================================
-          TESTIMONIALS - Clean cards
+          TESTIMONIALS - Using TestimonialGrid component
           ======================================== */}
-      <section className="py-32 bg-neutral-50">
+      <section className="py-32 bg-neutral-50 dark:bg-neutral-900">
         <div className="container mx-auto px-6">
           <AnimateOnScroll animation="fadeInUp" className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 dark:text-white mb-6">
               What clients say
             </h2>
           </AnimateOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <AnimateOnScroll
-                key={testimonial.author}
-                animation="fadeInUp"
-                delay={index * 0.1}
-              >
-                <div className="bg-white rounded-2xl p-8 h-full flex flex-col">
-                  <svg className="w-10 h-10 text-neutral-200 mb-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                  <p className="text-neutral-600 leading-relaxed mb-6 flex-grow">
-                    {testimonial.quote}
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <p className="font-semibold text-neutral-900">{testimonial.author}</p>
-                      <p className="text-sm text-neutral-500">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
+          <TestimonialGrid testimonials={testimonials} columns={3} />
         </div>
       </section>
 

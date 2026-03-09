@@ -112,7 +112,7 @@ export default function ServicesPage() {
       {/* ========================================
           HERO
           ======================================== */}
-      <section ref={heroRef} className="relative h-[80vh] min-h-[600px] overflow-hidden -mt-20">
+      <section ref={heroRef} className="relative h-[80vh] min-h-[600px] overflow-hidden -mt-[88px]">
         <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
           <img
             src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=85"

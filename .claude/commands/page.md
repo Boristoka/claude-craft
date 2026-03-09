@@ -103,40 +103,54 @@ export default function PricingPage() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <div className="min-h-screen">
-      {/* HERO */}
-      <section ref={heroRef} className="relative pt-32 pb-20 bg-neutral-50 -mt-20">
+      {/* HERO - Full bleed with parallax */}
+      <section ref={heroRef} className="relative h-[50vh] min-h-[400px] overflow-hidden -mt-20">
+        <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
+          <img
+            src="[HERO IMAGE - professional/business themed]"
+            alt="Pricing"
+            className="w-full h-[120%] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/50 via-neutral-900/40 to-neutral-900/80" />
+        </motion.div>
+
         <motion.div
-          className="container mx-auto px-6 pt-20"
+          className="relative h-full flex flex-col justify-end pb-16 md:pb-24 pt-20"
           style={{ opacity: heroOpacity }}
         >
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <motion.div variants={fadeUp}>
-              <Badge className="mb-6">Pricing</Badge>
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <motion.div variants={fadeUp}>
+                <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-6">
+                  Pricing
+                </Badge>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-[1.1]"
+              >
+                Transparent <em className="italic">pricing</em>
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="text-lg md:text-xl text-white/80 max-w-xl mx-auto leading-relaxed"
+              >
+                [PRICING INTRO - no hidden costs, etc.]
+              </motion.p>
             </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="font-serif text-4xl md:text-5xl lg:text-6xl text-neutral-900 mb-6 leading-[1.1]"
-            >
-              Transparent <em className="italic">pricing</em>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="text-lg md:text-xl text-neutral-600 max-w-xl mx-auto leading-relaxed"
-            >
-              [PRICING INTRO - no hidden costs, etc.]
-            </motion.p>
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 
@@ -264,12 +278,15 @@ export default function PricingPage() {
 
 ### Portfolio (`/page portfolio`)
 
+Use the `ProjectCard` component for a premium look:
+
 ```tsx
 "use client";
 
-import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
+import { ProjectCard, ProjectGrid, FeaturedProject } from "@/components/ui/ProjectCard";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
@@ -284,9 +301,10 @@ const projects = [
   {
     title: "[PROJECT NAME]",
     category: "[CATEGORY]",
-    description: "[SHORT DESCRIPTION - 1-2 sentences]",
-    image: "[UNSPLASH PROJECT PHOTO]",
-    tags: ["[TAG1]", "[TAG2]", "[TAG3]"],
+    description: "[SHORT DESCRIPTION]",
+    image: "[UNSPLASH URL]",
+    tags: ["[TAG1]", "[TAG2]"],
+    year: "2024",
   },
   // ... more projects (6-9 items)
 ];
@@ -297,77 +315,75 @@ export default function PortfolioPage() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <div className="min-h-screen">
-      {/* HERO */}
-      <section ref={heroRef} className="relative pt-32 pb-20 bg-neutral-50 -mt-20">
+      {/* HERO - Full bleed with parallax */}
+      <section ref={heroRef} className="relative h-[70vh] min-h-[500px] overflow-hidden -mt-20">
+        <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
+          <img
+            src="[HERO IMAGE - relevant to portfolio]"
+            alt="Our work"
+            className="w-full h-[120%] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/40 via-neutral-900/30 to-neutral-900/70" />
+        </motion.div>
+
         <motion.div
-          className="container mx-auto px-6 pt-20"
+          className="relative h-full flex flex-col justify-end pb-16 md:pb-24 pt-20"
           style={{ opacity: heroOpacity }}
         >
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
-            className="max-w-3xl"
-          >
-            <motion.div variants={fadeUp}>
-              <Badge className="mb-6">Portfolio</Badge>
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
+              className="max-w-3xl"
+            >
+              <motion.div variants={fadeUp}>
+                <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-6">
+                  Portfolio
+                </Badge>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-[1.1]"
+              >
+                Our <em className="italic">work</em>
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed"
+              >
+                [PORTFOLIO INTRO]
+              </motion.p>
             </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="font-serif text-4xl md:text-5xl lg:text-6xl text-neutral-900 mb-6 leading-[1.1]"
-            >
-              Our <em className="italic">work</em>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="text-lg md:text-xl text-neutral-600 max-w-xl leading-relaxed"
-            >
-              [PORTFOLIO INTRO - projects we're proud of]
-            </motion.p>
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 
-      {/* PROJECTS GRID */}
+      {/* PROJECTS GRID - using ProjectCard component */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ProjectGrid columns={3}>
             {projects.map((project, index) => (
-              <AnimateOnScroll
-                key={project.title}
-                animation="fadeInUp"
-                delay={index * 0.1}
-              >
-                <div className="group cursor-pointer">
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-4">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <p className="text-sm text-neutral-500 mb-2">{project.category}</p>
-                  <h3 className="text-xl font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-neutral-600 mb-3">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="text-xs px-2 py-1 bg-neutral-100 text-neutral-600 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              <AnimateOnScroll key={project.title} animation="fadeInUp" delay={index * 0.1}>
+                <ProjectCard
+                  title={project.title}
+                  category={project.category}
+                  description={project.description}
+                  image={project.image}
+                  tags={project.tags}
+                  year={project.year}
+                  href={`/demo/portfolio/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
+                />
               </AnimateOnScroll>
             ))}
-          </div>
+          </ProjectGrid>
         </div>
       </section>
 
@@ -396,12 +412,14 @@ export default function PortfolioPage() {
 
 ### Blog (`/page blog`)
 
+Use the `BlogCard` component for a premium look:
+
 ```tsx
 "use client";
 
-import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { BlogCard, BlogGrid } from "@/components/ui/BlogCard";
 import { Badge } from "@/components/ui/Badge";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
@@ -417,8 +435,9 @@ const posts = [
     excerpt: "[EXCERPT - 2-3 sentence summary]",
     image: "[UNSPLASH PHOTO]",
     date: "[DATE]",
+    readTime: "[X min read]",
     category: "[CATEGORY]",
-    slug: "[slug]",
+    author: { name: "[AUTHOR]", avatar: "[AVATAR URL]" },
   },
   // ... more articles (6-9 items)
 ];
@@ -429,82 +448,75 @@ export default function BlogPage() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <div className="min-h-screen">
-      {/* HERO */}
-      <section ref={heroRef} className="relative pt-32 pb-20 bg-neutral-50 -mt-20">
+      {/* HERO - Full bleed with parallax */}
+      <section ref={heroRef} className="relative h-[60vh] min-h-[450px] overflow-hidden -mt-20">
+        <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
+          <img
+            src="[HERO IMAGE - editorial/writing themed]"
+            alt="Blog"
+            className="w-full h-[120%] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/50 via-neutral-900/40 to-neutral-900/80" />
+        </motion.div>
+
         <motion.div
-          className="container mx-auto px-6 pt-20"
+          className="relative h-full flex flex-col justify-end pb-16 md:pb-24 pt-20"
           style={{ opacity: heroOpacity }}
         >
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
-            className="max-w-3xl"
-          >
-            <motion.div variants={fadeUp}>
-              <Badge className="mb-6">Blog</Badge>
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
+              className="max-w-3xl"
+            >
+              <motion.div variants={fadeUp}>
+                <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-6">
+                  Blog
+                </Badge>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-[1.1]"
+              >
+                Insights & <em className="italic">stories</em>
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed"
+              >
+                [BLOG INTRO]
+              </motion.p>
             </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="font-serif text-4xl md:text-5xl lg:text-6xl text-neutral-900 mb-6 leading-[1.1]"
-            >
-              Insights & <em className="italic">news</em>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="text-lg md:text-xl text-neutral-600 max-w-xl leading-relaxed"
-            >
-              [BLOG INTRO - sharing knowledge, trends, tips]
-            </motion.p>
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 
-      {/* FEATURED POST */}
+      {/* FEATURED POST - using BlogCard with featured prop */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <AnimateOnScroll animation="fadeInUp">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                <img
-                  src={posts[0].image}
-                  alt={posts[0].title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <div className="flex items-center gap-4 mb-4">
-                  <Badge variant="secondary">{posts[0].category}</Badge>
-                  <span className="text-sm text-neutral-500">{posts[0].date}</span>
-                </div>
-                <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 mb-4">
-                  {posts[0].title}
-                </h2>
-                <p className="text-lg text-neutral-600 leading-relaxed mb-6">
-                  {posts[0].excerpt}
-                </p>
-                <Link
-                  href={`/demo/blog/${posts[0].slug}`}
-                  className="inline-flex items-center text-neutral-900 font-medium hover:text-primary-600 transition-colors"
-                >
-                  Read more
-                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </AnimateOnScroll>
+          <BlogCard
+            featured
+            title={posts[0].title}
+            excerpt={posts[0].excerpt}
+            image={posts[0].image}
+            author={posts[0].author}
+            date={posts[0].date}
+            readTime={posts[0].readTime}
+            category={posts[0].category}
+            href="/demo/blog/[slug]"
+          />
         </div>
       </section>
 
-      {/* ALL POSTS */}
+      {/* ALL POSTS - using BlogGrid */}
       <section className="py-20 bg-neutral-50">
         <div className="container mx-auto px-6">
           <AnimateOnScroll animation="fadeInUp" className="mb-12">
@@ -513,37 +525,21 @@ export default function BlogPage() {
             </h2>
           </AnimateOnScroll>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.slice(1).map((post, index) => (
-              <AnimateOnScroll
+          <BlogGrid columns={3}>
+            {posts.slice(1).map((post) => (
+              <BlogCard
                 key={post.title}
-                animation="fadeInUp"
-                delay={index * 0.1}
-              >
-                <Link href={`/demo/blog/${post.slug}`} className="group block">
-                  <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-4">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="flex items-center gap-4 mb-3">
-                    <span className="text-xs px-2 py-1 bg-neutral-200 text-neutral-600 rounded-full">
-                      {post.category}
-                    </span>
-                    <span className="text-sm text-neutral-500">{post.date}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-neutral-600 text-sm line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                </Link>
-              </AnimateOnScroll>
+                title={post.title}
+                excerpt={post.excerpt}
+                image={post.image}
+                author={post.author}
+                date={post.date}
+                readTime={post.readTime}
+                category={post.category}
+                href="/demo/blog/[slug]"
+              />
             ))}
-          </div>
+          </BlogGrid>
         </div>
       </section>
     </div>
@@ -603,40 +599,54 @@ export default function FAQPage() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <div className="min-h-screen">
-      {/* HERO */}
-      <section ref={heroRef} className="relative pt-32 pb-20 bg-neutral-50 -mt-20">
+      {/* HERO - Full bleed with parallax */}
+      <section ref={heroRef} className="relative h-[50vh] min-h-[400px] overflow-hidden -mt-20">
+        <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
+          <img
+            src="[HERO IMAGE - helpful/support themed]"
+            alt="FAQ"
+            className="w-full h-[120%] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/50 via-neutral-900/40 to-neutral-900/80" />
+        </motion.div>
+
         <motion.div
-          className="container mx-auto px-6 pt-20"
+          className="relative h-full flex flex-col justify-end pb-16 md:pb-24 pt-20"
           style={{ opacity: heroOpacity }}
         >
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <motion.div variants={fadeUp}>
-              <Badge className="mb-6">FAQ</Badge>
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <motion.div variants={fadeUp}>
+                <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-6">
+                  FAQ
+                </Badge>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-[1.1]"
+              >
+                Frequently asked <em className="italic">questions</em>
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="text-lg md:text-xl text-white/80 max-w-xl mx-auto leading-relaxed"
+              >
+                [FAQ INTRO - answers to the most common questions]
+              </motion.p>
             </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="font-serif text-4xl md:text-5xl lg:text-6xl text-neutral-900 mb-6 leading-[1.1]"
-            >
-              Frequently asked <em className="italic">questions</em>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="text-lg md:text-xl text-neutral-600 max-w-xl mx-auto leading-relaxed"
-            >
-              [FAQ INTRO - answers to the most common questions]
-            </motion.p>
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 
@@ -684,6 +694,141 @@ export default function FAQPage() {
             </p>
             <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100" asChild>
               <Link href="/demo/contact">Contact us</Link>
+            </Button>
+          </AnimateOnScroll>
+        </div>
+      </section>
+    </div>
+  );
+}
+```
+
+---
+
+### Team (`/page team`)
+
+Use the `TeamCard` component for team member displays:
+
+```tsx
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
+import { TeamCard, TeamGrid } from "@/components/ui/TeamCard";
+import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
+import { AnimateOnScroll, CountUp } from "@/components/ui/AnimateOnScroll";
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+};
+
+const team = [
+  {
+    name: "[NAME]",
+    role: "[ROLE]",
+    image: "[PORTRAIT PHOTO]",
+    bio: "[SHORT BIO - optional]",
+    social: {
+      linkedin: "[URL]",
+      twitter: "[URL]",
+    },
+  },
+  // ... more team members
+];
+
+export default function TeamPage() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <div className="min-h-screen">
+      {/* HERO - Full bleed with parallax */}
+      <section ref={heroRef} className="relative h-[60vh] min-h-[450px] overflow-hidden -mt-20">
+        <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
+          <img
+            src="[HERO IMAGE - team/collaboration themed]"
+            alt="Our team"
+            className="w-full h-[120%] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/40 via-neutral-900/30 to-neutral-900/70" />
+        </motion.div>
+
+        <motion.div
+          className="relative h-full flex flex-col justify-end pb-16 md:pb-24 pt-20"
+          style={{ opacity: heroOpacity }}
+        >
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
+              className="max-w-3xl"
+            >
+              <motion.div variants={fadeUp}>
+                <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-6">
+                  Our Team
+                </Badge>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-[1.1]"
+              >
+                Meet the <em className="italic">people</em>
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed"
+              >
+                [TEAM INTRO]
+              </motion.p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* TEAM GRID - using TeamCard component */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <TeamGrid columns={4}>
+            {team.map((member) => (
+              <TeamCard
+                key={member.name}
+                name={member.name}
+                role={member.role}
+                image={member.image}
+                social={member.social}
+              />
+            ))}
+          </TeamGrid>
+        </div>
+      </section>
+
+      {/* For leadership, use variant="overlay" */}
+      {/* <TeamCard variant="overlay" bio={member.bio} ... /> */}
+
+      {/* CTA */}
+      <section className="py-24 bg-neutral-900">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp" className="max-w-2xl mx-auto text-center">
+            <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">
+              Join our <em className="italic">team</em>
+            </h2>
+            <p className="text-neutral-400 mb-8">
+              We're always looking for talented people.
+            </p>
+            <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100" asChild>
+              <Link href="/demo/contact">View open positions</Link>
             </Button>
           </AnimateOnScroll>
         </div>

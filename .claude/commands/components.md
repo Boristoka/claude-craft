@@ -525,3 +525,533 @@ import { ParallaxImage } from "@/components/ui/ParallaxImage";
   className="h-[80vh]"
 />
 ```
+
+---
+
+## ProjectCard
+
+Portfolio project cards with 3D tilt effect.
+
+```tsx
+import { ProjectCard, ProjectGrid, FeaturedProject } from "@/components/ui/ProjectCard";
+
+// Basic project card
+<ProjectCard
+  title="Brand Identity"
+  category="Branding"
+  description="Complete visual identity system"
+  image="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800"
+  tags={["Identity", "Print", "Digital"]}
+  year="2024"
+  href="/portfolio/brand-identity"
+/>
+
+// Grid of projects
+<ProjectGrid columns={3}>
+  <ProjectCard ... />
+  <ProjectCard ... />
+  <ProjectCard ... />
+</ProjectGrid>
+
+// Large featured project
+<FeaturedProject
+  title="Meridian Brand Identity"
+  category="Branding & Strategy"
+  description="A complete brand transformation..."
+  image="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200"
+  stats={[
+    { label: "Brand Awareness", value: "+340%" },
+    { label: "Revenue", value: "2.4x" },
+  ]}
+  href="/portfolio/meridian"
+/>
+
+// Aspect ratios: "square" | "video" | "portrait"
+// Grid columns: 2 | 3 | 4
+```
+
+---
+
+## BlogCard
+
+Clean, modern blog post cards.
+
+```tsx
+import { BlogCard, BlogGrid, BlogListItem } from "@/components/ui/BlogCard";
+
+// Standard blog card
+<BlogCard
+  title="Design Systems at Scale"
+  excerpt="How we built a design system..."
+  image="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800"
+  author={{ name: "Jane Doe", avatar: "/avatar.jpg", role: "Designer" }}
+  date="Mar 15, 2024"
+  readTime="6 min read"
+  category="Design"
+  href="/blog/design-systems"
+/>
+
+// Featured (large) blog card
+<BlogCard featured ... />
+
+// Grid of posts
+<BlogGrid columns={3}>
+  <BlogCard ... />
+  <BlogCard ... />
+</BlogGrid>
+
+// Minimal list-style item
+<BlogListItem
+  title="Quick Tips for Better Typography"
+  category="Design"
+  date="Feb 18, 2024"
+  readTime="3 min"
+  href="/blog/typography-tips"
+/>
+```
+
+---
+
+## TeamCard
+
+Team member cards with hover effects.
+
+```tsx
+import { TeamCard, TeamGrid } from "@/components/ui/TeamCard";
+
+// Default style (grayscale hover effect)
+<TeamCard
+  name="Sarah Chen"
+  role="Creative Director"
+  image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600"
+  social={{
+    linkedin: "https://linkedin.com/in/...",
+    twitter: "https://twitter.com/...",
+    dribbble: "https://dribbble.com/...",
+  }}
+/>
+
+// Overlay variant (content over image)
+<TeamCard
+  variant="overlay"
+  name="Sarah Chen"
+  role="Creative Director"
+  image="..."
+  bio="Former design lead at Airbnb..."
+  social={{ linkedin: "...", twitter: "..." }}
+/>
+
+// Minimal variant (circular avatar)
+<TeamCard variant="minimal" name="..." role="..." image="..." />
+
+// Team grid
+<TeamGrid columns={4}>
+  <TeamCard ... />
+  <TeamCard ... />
+</TeamGrid>
+
+// Variants: "default" | "minimal" | "overlay"
+// Grid columns: 2 | 3 | 4
+```
+
+---
+
+## Map
+
+Interactive OpenStreetMap with Leaflet. No API key required.
+
+```tsx
+import { Map } from "@/components/ui/Map";
+
+// Basic map with marker
+<Map
+  latitude={52.3676}
+  longitude={4.9041}
+  zoom={14}
+  marker={{
+    title: "Our Office",
+    popup: "123 Main Street, Amsterdam",
+  }}
+/>
+
+// Dark theme map
+<Map
+  latitude={52.3676}
+  longitude={4.9041}
+  tileStyle="dark"
+/>
+
+// Grayscale with hover effect (elegant look)
+<Map
+  latitude={52.3676}
+  longitude={4.9041}
+  grayscale
+  height={400}
+/>
+
+// Props:
+// latitude, longitude: number (required)
+// zoom: 1-18 (default: 14)
+// height: number | string (default: 400)
+// marker: { title?: string, popup?: string }
+// tileStyle: "default" | "dark" | "light" | "watercolor"
+// grayscale: boolean (elegant grayscale filter)
+// scrollWheelZoom: boolean (default: false)
+```
+
+---
+
+## CookieBanner
+
+GDPR-compliant cookie consent banner. Auto-included in demo layout.
+
+```tsx
+import { CookieBanner, useCookieConsent } from "@/components/ui/CookieBanner";
+
+// Basic usage (already in demo layout)
+<CookieBanner
+  privacyUrl="/privacy"
+  onAccept={() => console.log("Accepted")}
+  onReject={() => console.log("Rejected")}
+/>
+
+// Different positions
+<CookieBanner position="bottom-left" />
+<CookieBanner position="bottom-right" />
+
+// Check consent status
+function MyComponent() {
+  const { hasConsent, consentStatus } = useCookieConsent();
+
+  if (hasConsent) {
+    // Load analytics, tracking, etc.
+  }
+
+  return <div>...</div>;
+}
+
+// Props:
+// privacyUrl: string (link to privacy policy)
+// position: "bottom" | "bottom-left" | "bottom-right"
+// message: string (custom consent message)
+// showCustomize: boolean (show customize button)
+```
+
+---
+
+## Map
+
+Interactive OpenStreetMap - no API key needed, free forever.
+
+```tsx
+import { Map } from "@/components/ui/Map";
+
+// Basic map
+<Map
+  latitude={52.3676}
+  longitude={4.9041}
+  zoom={13}
+  height={400}
+/>
+
+// With marker
+<Map
+  latitude={37.7749}
+  longitude={-122.4194}
+  zoom={14}
+  marker={{
+    title: "Our Office",
+    popup: "123 Main Street, San Francisco"
+  }}
+/>
+
+// Different styles
+<Map tileStyle="light" />   // Clean light style
+<Map tileStyle="dark" />    // Dark mode style
+<Map tileStyle="watercolor" /> // Artistic watercolor
+
+// Grayscale filter
+<Map grayscale />
+
+// Props:
+// latitude: number (required)
+// longitude: number (required)
+// zoom: number (default: 13)
+// height: number | string (default: 400)
+// tileStyle: "default" | "light" | "dark" | "watercolor"
+// grayscale: boolean (apply grayscale filter)
+// marker: { title?: string, popup?: string }
+```
+
+---
+
+## Testimonials
+
+Display customer reviews and testimonials in various layouts.
+
+```tsx
+import { TestimonialCard, TestimonialGrid, TestimonialCarousel } from "@/components/ui/TestimonialCard";
+
+// Single testimonial card
+<TestimonialCard
+  quote="Amazing work! They delivered beyond expectations."
+  author="Sarah Johnson"
+  role="CEO"
+  company="TechCorp"
+  avatar="https://images.unsplash.com/..."
+  rating={5}
+/>
+
+// Variants
+<TestimonialCard variant="default" ... />   // White card with border
+<TestimonialCard variant="minimal" ... />   // No background
+<TestimonialCard variant="featured" ... />  // Dark card (inverted)
+
+// Grid of testimonials
+const testimonials = [
+  { quote: "...", author: "...", role: "...", company: "...", avatar: "...", rating: 5 },
+  { quote: "...", author: "...", role: "...", company: "...", avatar: "...", rating: 5 },
+  { quote: "...", author: "...", role: "...", company: "...", avatar: "...", rating: 5 },
+];
+
+<TestimonialGrid
+  testimonials={testimonials}
+  columns={3}  // 1, 2, or 3
+/>
+
+// Animated carousel with auto-play
+<TestimonialCarousel
+  testimonials={testimonials}
+  autoPlay={true}
+  interval={5000}
+/>
+
+// Props:
+// rating: 1 | 2 | 3 | 4 | 5 (shows star rating)
+// variant: "default" | "minimal" | "featured"
+// columns: 1 | 2 | 3 (for grid)
+// autoPlay: boolean (for carousel)
+// interval: number (ms, for carousel)
+```
+
+---
+
+## FeatureGrid
+
+Display features, benefits, or services in a clean icon grid. Perfect for SaaS.
+
+```tsx
+import { FeatureGrid, FeatureIcons } from "@/components/ui/FeatureGrid";
+
+<FeatureGrid
+  features={[
+    {
+      icon: <FeatureIcons.Zap />,
+      title: "Lightning Fast",
+      description: "Optimized for speed and performance",
+    },
+    {
+      icon: <FeatureIcons.Shield />,
+      title: "Secure",
+      description: "Bank-level security for your data",
+    },
+    {
+      icon: <FeatureIcons.Globe />,
+      title: "Global CDN",
+      description: "Deployed across 50+ regions worldwide",
+    },
+  ]}
+  columns={3}
+  variant="cards"
+/>
+
+// Available icons: Zap, Shield, Globe, Clock, Users, Chart, Code, Heart, Star, Check, Lock, Sparkles
+// Variants: "default" | "cards" | "minimal" | "centered"
+// Columns: 2 | 3 | 4
+```
+
+---
+
+## LogoCloud & TrustBadges
+
+Display client logos or trust indicators.
+
+```tsx
+import { LogoCloud, TrustBadges, TrustIcons } from "@/components/ui/LogoCloud";
+
+// Client logos
+<LogoCloud
+  title="Trusted by industry leaders"
+  logos={[
+    { name: "Stripe" },
+    { name: "Vercel" },
+    { name: "Linear" },
+  ]}
+  columns={5}
+  variant="grayscale"
+/>
+
+// Trust badges (e-commerce)
+<TrustBadges
+  badges={[
+    { icon: <TrustIcons.Truck />, label: "Free Shipping" },
+    { icon: <TrustIcons.Return />, label: "30-Day Returns" },
+    { icon: <TrustIcons.Shield />, label: "Secure Payment" },
+    { icon: <TrustIcons.Support />, label: "24/7 Support" },
+  ]}
+  variant="horizontal"
+/>
+
+// Available TrustIcons: Truck, Return, Shield, Support, CreditCard, Gift
+```
+
+---
+
+## Timeline & ProcessSteps
+
+Display experience history or step-by-step processes.
+
+```tsx
+import { Timeline, ProcessSteps } from "@/components/ui/Timeline";
+
+// Experience timeline
+<Timeline
+  items={[
+    { year: "2024", title: "Senior Designer", company: "TechCorp", current: true },
+    { year: "2021", title: "Designer", company: "StartupXYZ" },
+    { year: "2018", title: "Junior Designer", company: "Agency" },
+  ]}
+  variant="default"
+/>
+
+// Process steps
+<ProcessSteps
+  steps={[
+    { number: "01", title: "Discovery", description: "We learn about your goals" },
+    { number: "02", title: "Design", description: "We create the solution" },
+    { number: "03", title: "Develop", description: "We build it" },
+    { number: "04", title: "Launch", description: "We ship it" },
+  ]}
+  variant="cards"
+/>
+
+// Timeline variants: "default" | "alternating" | "compact"
+// ProcessSteps variants: "horizontal" | "vertical" | "cards"
+```
+
+---
+
+## MenuSection (Restaurant)
+
+Restaurant menu with categories and pricing.
+
+```tsx
+import { MenuSection, OpeningHours, ReservationCTA } from "@/components/ui/MenuSection";
+
+<MenuSection
+  categories={[
+    {
+      name: "Starters",
+      description: "Begin your culinary journey",
+      items: [
+        { name: "Bruschetta", price: "€8", description: "Tomato, basil, garlic", tag: "Popular" },
+        { name: "Soup of the Day", price: "€7", description: "Ask your server" },
+      ],
+    },
+    {
+      name: "Main Courses",
+      items: [
+        { name: "Grilled Salmon", price: "€24", description: "With seasonal vegetables" },
+        { name: "Beef Tenderloin", price: "€32", tag: "Popular" },
+      ],
+    },
+  ]}
+  variant="elegant"
+/>
+
+// Opening hours
+<OpeningHours
+  hours={[
+    { days: "Monday - Friday", hours: "9:00 - 22:00" },
+    { days: "Saturday", hours: "10:00 - 23:00" },
+    { days: "Sunday", hours: "Closed", closed: true },
+  ]}
+  variant="card"
+/>
+
+// Reservation CTA
+<ReservationCTA
+  phone="+31 20 123 4567"
+  bookingUrl="https://booking.example.com"
+/>
+
+// MenuSection variants: "default" | "cards" | "elegant" | "grid"
+// Item tags: "Popular" | "New" | "Spicy" | "Vegetarian"
+```
+
+---
+
+## ProductCard (E-commerce)
+
+Product cards and grids for online stores.
+
+```tsx
+import { ProductCard, ProductGrid, CollectionCard } from "@/components/ui/ProductCard";
+
+// Single product
+<ProductCard
+  name="Classic T-Shirt"
+  price={45}
+  originalPrice={60}  // Shows discount
+  image="/product.jpg"
+  category="Apparel"
+  badge="Sale"
+  rating={4.5}
+  reviews={128}
+  href="/products/classic-tshirt"
+  onAddToCart={() => addToCart()}
+/>
+
+// Product grid
+<ProductGrid columns={4}>
+  <ProductCard ... />
+  <ProductCard ... />
+</ProductGrid>
+
+// Collection card
+<CollectionCard
+  name="New Arrivals"
+  description="Fresh styles for the season"
+  image="/collection.jpg"
+  itemCount={24}
+  href="/collections/new"
+  variant="overlay"
+/>
+
+// Badge options: "New" | "Sale" | "Bestseller"
+// CollectionCard variants: "default" | "overlay" | "side"
+```
+
+---
+
+## NewsletterSignup
+
+Email capture form for building mailing lists.
+
+```tsx
+import { NewsletterSignup, AvailabilityBadge } from "@/components/ui/NewsletterSignup";
+
+<NewsletterSignup
+  title="Join our newsletter"
+  description="Get 10% off your first order"
+  buttonText="Subscribe"
+  variant="card"
+  onSubmit={(email) => subscribeUser(email)}
+/>
+
+// Variants: "default" | "minimal" | "card" | "banner" | "inline"
+
+// Availability badge (for freelancers)
+<AvailabilityBadge available={true} />
+<AvailabilityBadge available={false} text="Booked until March" />
+```

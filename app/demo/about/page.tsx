@@ -78,7 +78,7 @@ export default function AboutPage() {
       {/* ========================================
           HERO - Full bleed
           ======================================== */}
-      <section ref={heroRef} className="relative h-[80vh] min-h-[600px] overflow-hidden -mt-20">
+      <section ref={heroRef} className="relative h-[80vh] min-h-[600px] overflow-hidden -mt-[88px]">
         <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=85"

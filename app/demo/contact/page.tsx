@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Input, Textarea } from "@/components/ui/Input";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { FAQSchema, LocalBusinessSchema } from "@/components/seo/JsonLd";
+import { Map } from "@/components/ui/Map";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -84,11 +86,34 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* ========================================
-          HERO
-          ======================================== */}
-      <section ref={heroRef} className="relative h-[60vh] min-h-[500px] overflow-hidden -mt-20">
+    <>
+      {/* JSON-LD Structured Data for SEO */}
+      <LocalBusinessSchema
+        name="Acme Studio"
+        description="We help ambitious businesses grow with thoughtful digital solutions."
+        url="https://example.com"
+        telephone="+1-555-123-4567"
+        email="hello@acmestudio.com"
+        priceRange="$$"
+        address={{
+          streetAddress: "123 Main Street",
+          addressLocality: "San Francisco",
+          addressRegion: "CA",
+          postalCode: "94102",
+          addressCountry: "US",
+        }}
+        sameAs={[
+          "https://linkedin.com/company/acmestudio",
+          "https://instagram.com/acmestudio",
+        ]}
+      />
+      <FAQSchema items={faqs} />
+
+      <div className="min-h-screen">
+        {/* ========================================
+            HERO
+            ======================================== */}
+      <section ref={heroRef} className="relative h-[60vh] min-h-[500px] overflow-hidden -mt-[88px]">
         <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85"
@@ -249,14 +274,20 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                {/* Map placeholder */}
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100">
-                  <img
-                    src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80"
-                    alt="San Francisco"
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
+                {/* Interactive Map */}
+                <Map
+                  latitude={37.7749}
+                  longitude={-122.4194}
+                  zoom={14}
+                  height={300}
+                  marker={{
+                    title: "Acme Studio",
+                    popup: "123 Main Street, San Francisco",
+                  }}
+                  tileStyle="light"
+                  grayscale
+                  className="aspect-[4/3]"
+                />
               </div>
             </AnimateOnScroll>
           </div>
@@ -322,6 +353,7 @@ export default function ContactPage() {
           </AnimateOnScroll>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

@@ -8,6 +8,12 @@ import { PricingTable } from "@/components/ui/PricingTable";
 import { CommandPalette, CommandIcons } from "@/components/ui/CommandPalette";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Badge } from "@/components/ui/Badge";
+import { FeatureGrid, FeatureIcons } from "@/components/ui/FeatureGrid";
+import { Timeline, ProcessSteps } from "@/components/ui/Timeline";
+import { MenuSection, OpeningHours } from "@/components/ui/MenuSection";
+import { ProductCard, ProductGrid } from "@/components/ui/ProductCard";
+import { TrustBadges, TrustIcons } from "@/components/ui/LogoCloud";
+import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 
 export default function ComponentsShowcase() {
   return (
@@ -311,6 +317,331 @@ export default function ComponentsShowcase() {
               },
             ]}
           />
+        </div>
+      </section>
+
+      {/* ============================================
+          INDUSTRY-SPECIFIC COMPONENTS
+          ============================================ */}
+
+      {/* Feature Grid (SaaS) */}
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-900">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp">
+            <div className="max-w-2xl mb-12">
+              <Badge className="mb-4">SaaS</Badge>
+              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
+                Feature Grid
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Premium feature displays with cursor-following spotlight, glassmorphism, and animated icons.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="space-y-16">
+            {/* Spotlight Variant (dark) */}
+            <div className="bg-neutral-900 dark:bg-black rounded-3xl p-8 md:p-12">
+              <h3 className="text-sm font-medium text-neutral-400 mb-8 uppercase tracking-wider">Spotlight Variant (cursor glow effect)</h3>
+              <FeatureGrid
+                features={[
+                  { icon: <FeatureIcons.Zap />, title: "Lightning Fast", description: "Optimized for speed and performance across all devices." },
+                  { icon: <FeatureIcons.Shield />, title: "Secure by Default", description: "Bank-level encryption protects your data 24/7." },
+                  { icon: <FeatureIcons.Globe />, title: "Global CDN", description: "Deployed across 50+ regions for minimal latency." },
+                ]}
+                columns={3}
+                variant="spotlight"
+              />
+            </div>
+
+            {/* Cards Variant with shine effect */}
+            <div>
+              <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider">Cards Variant (with shine effect)</h3>
+              <FeatureGrid
+                features={[
+                  { icon: <FeatureIcons.Users />, title: "Team Collaboration", description: "Work together in real-time with your entire team." },
+                  { icon: <FeatureIcons.Chart />, title: "Advanced Analytics", description: "Deep insights into user behavior and trends." },
+                  { icon: <FeatureIcons.Code />, title: "Developer API", description: "Full REST API with comprehensive documentation." },
+                ]}
+                columns={3}
+                variant="cards"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges (E-commerce) */}
+      <section className="py-20 bg-white dark:bg-neutral-950">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp">
+            <div className="max-w-2xl mb-12">
+              <Badge className="mb-4">E-commerce</Badge>
+              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
+                Trust Badges
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Build customer confidence with animated trust indicators and value counters.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider">Cards Variant (with counters)</h3>
+              <TrustBadges
+                badges={[
+                  { icon: <TrustIcons.Truck />, label: "Orders Shipped", value: 50000, suffix: "+" },
+                  { icon: <TrustIcons.Star />, label: "5-Star Reviews", value: 4800, suffix: "" },
+                  { icon: <TrustIcons.Shield />, label: "Secure Transactions", value: 100, suffix: "%" },
+                  { icon: <TrustIcons.Clock />, label: "Support Response", description: "Under 2 hours" },
+                ]}
+                variant="cards"
+              />
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider">Horizontal Variant (hover to see animations)</h3>
+              <TrustBadges
+                badges={[
+                  { icon: <TrustIcons.Truck />, label: "Free Shipping", description: "On orders over €50" },
+                  { icon: <TrustIcons.Return />, label: "30-Day Returns", description: "No questions asked" },
+                  { icon: <TrustIcons.Shield />, label: "Secure Payment", description: "SSL encrypted" },
+                  { icon: <TrustIcons.Support />, label: "24/7 Support", description: "Always here to help" },
+                ]}
+                variant="horizontal"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Cards (E-commerce) */}
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-900">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp">
+            <div className="max-w-2xl mb-12">
+              <Badge className="mb-4">E-commerce</Badge>
+              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
+                Product Cards
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Beautiful product displays with hover effects and quick-add functionality.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <ProductGrid columns={4}>
+            <ProductCard
+              name="Classic T-Shirt"
+              price={45}
+              image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80"
+              category="Apparel"
+              badge="New"
+              rating={5}
+              reviews={128}
+            />
+            <ProductCard
+              name="Leather Wallet"
+              price={85}
+              originalPrice={120}
+              image="https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80"
+              category="Accessories"
+              badge="Sale"
+              rating={4}
+              reviews={64}
+            />
+            <ProductCard
+              name="Canvas Backpack"
+              price={129}
+              image="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80"
+              category="Bags"
+              badge="Bestseller"
+              rating={5}
+              reviews={256}
+            />
+            <ProductCard
+              name="Wool Scarf"
+              price={55}
+              image="https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=600&q=80"
+              category="Accessories"
+              rating={4}
+              reviews={42}
+            />
+          </ProductGrid>
+        </div>
+      </section>
+
+      {/* Menu Section (Restaurant) */}
+      <section className="py-20 bg-white dark:bg-neutral-950">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp">
+            <div className="max-w-2xl mb-12">
+              <Badge className="mb-4">Restaurant</Badge>
+              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
+                Menu Section
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Premium menu displays with spotlight effects, image previews, and elegant animations.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="space-y-16">
+            {/* Spotlight Variant */}
+            <div>
+              <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider">Spotlight Variant (hover for glow effect)</h3>
+              <MenuSection
+                categories={[
+                  {
+                    name: "Signature Dishes",
+                    items: [
+                      { name: "Truffle Risotto", price: "€26", description: "Arborio rice, black truffle, aged parmesan", tag: "Popular", image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=300&q=80" },
+                      { name: "Wagyu Beef Tataki", price: "€38", description: "A5 wagyu, ponzu, microgreens", tag: "New" },
+                      { name: "Lobster Thermidor", price: "€45", description: "Whole Maine lobster, cognac cream", tag: "Popular" },
+                    ],
+                  },
+                ]}
+                variant="spotlight"
+              />
+            </div>
+
+            {/* Elegant Variant with Opening Hours */}
+            <div className="grid lg:grid-cols-3 gap-12">
+              <div className="lg:col-span-2">
+                <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider">Elegant Variant (animated dotted lines)</h3>
+                <MenuSection
+                  categories={[
+                    {
+                      name: "Starters",
+                      items: [
+                        { name: "Bruschetta", price: "€8", description: "Tomato, basil, garlic, olive oil", tag: "Popular" },
+                        { name: "Burrata Caprese", price: "€14", description: "Fresh burrata, heirloom tomatoes, basil" },
+                        { name: "Soup of the Day", price: "€7", description: "Ask your server for today's selection" },
+                      ],
+                    },
+                    {
+                      name: "Main Courses",
+                      items: [
+                        { name: "Grilled Sea Bass", price: "€28", description: "Mediterranean herbs, lemon butter", tag: "Popular" },
+                        { name: "Beef Tenderloin", price: "€34", description: "Truffle mash, red wine jus" },
+                        { name: "Wild Mushroom Risotto", price: "€22", description: "Porcini, parmesan, truffle oil", tag: "Vegetarian" },
+                      ],
+                    },
+                  ]}
+                  variant="elegant"
+                />
+              </div>
+              <div>
+                <OpeningHours
+                  title="Opening Hours"
+                  hours={[
+                    { days: "Monday - Friday", hours: "12:00 - 22:30" },
+                    { days: "Saturday", hours: "11:00 - 23:00" },
+                    { days: "Sunday", hours: "11:00 - 21:00" },
+                  ]}
+                  variant="card"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline & Process Steps (Portfolio/Agency) */}
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-900">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp">
+            <div className="max-w-2xl mb-12">
+              <Badge className="mb-4">Portfolio / Agency</Badge>
+              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
+                Timeline & Process Steps
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Scroll-triggered animations, glowing dots, and spotlight effects.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="space-y-20">
+            {/* Default Timeline with scroll-triggered line */}
+            <div className="grid lg:grid-cols-2 gap-16">
+              <div>
+                <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider">Default (scroll-triggered line)</h3>
+                <Timeline
+                  items={[
+                    { year: "2024", title: "Lead Designer", company: "TechCorp", description: "Leading design for enterprise products", current: true },
+                    { year: "2021", title: "Senior Designer", company: "StartupXYZ", description: "Built design system from scratch" },
+                    { year: "2018", title: "Product Designer", company: "AgencyOne", description: "Worked on 20+ client projects" },
+                  ]}
+                  variant="default"
+                />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider">Process Cards (with spotlight)</h3>
+                <ProcessSteps
+                  steps={[
+                    { number: "01", title: "Discovery", description: "Understanding your goals and requirements" },
+                    { number: "02", title: "Design", description: "Creating beautiful, functional solutions" },
+                    { number: "03", title: "Develop", description: "Building with clean, scalable code" },
+                    { number: "04", title: "Launch", description: "Deploying and supporting your project" },
+                  ]}
+                  variant="cards"
+                />
+              </div>
+            </div>
+
+            {/* Glow Variant (dark theme showcase) */}
+            <div className="bg-neutral-900 dark:bg-black rounded-3xl p-8 md:p-12">
+              <h3 className="text-sm font-medium text-neutral-400 mb-8 uppercase tracking-wider">Glow Variant (neon effect)</h3>
+              <Timeline
+                items={[
+                  { year: "2024", title: "Series B Funding", company: "$50M raised", description: "Expanding to new markets and scaling the team" },
+                  { year: "2022", title: "Product Launch", company: "v2.0 released", description: "Complete platform redesign with AI features" },
+                  { year: "2020", title: "Company Founded", company: "Day 1", description: "Started with a vision to transform the industry" },
+                ]}
+                variant="glow"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="py-20 bg-white dark:bg-neutral-950">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp">
+            <div className="max-w-2xl mx-auto mb-12 text-center">
+              <Badge className="mb-4">E-commerce / Blog</Badge>
+              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 dark:text-white mb-4">
+                Newsletter Signup
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Premium email capture with animated gradient borders and confetti on success.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="space-y-12">
+            {/* Gradient Variant */}
+            <div className="max-w-xl mx-auto">
+              <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider text-center">Gradient Variant (animated border)</h3>
+              <NewsletterSignup
+                title="Join the waitlist"
+                description="Be the first to know when we launch. Get early access and exclusive perks."
+                variant="gradient"
+              />
+            </div>
+
+            {/* Card Variant */}
+            <div className="max-w-xl mx-auto">
+              <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-wider text-center">Card Variant</h3>
+              <NewsletterSignup
+                title="Stay in the loop"
+                description="Get 10% off your first order plus early access to new releases."
+                variant="card"
+              />
+            </div>
+          </div>
         </div>
       </section>
 

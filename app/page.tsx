@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { AnimateOnScroll, StaggerChildren, CountUp } from "@/components/ui/AnimateOnScroll";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Map } from "@/components/ui/Map";
+import { Marquee } from "@/components/ui/Marquee";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -13,30 +16,67 @@ const fadeUp = {
   transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
 };
 
+// Mini pricing toggle demo component
+function PricingToggleDemo() {
+  const [yearly, setYearly] = useState(false);
+  return (
+    <div className="bg-white rounded-xl p-4 shadow-sm border border-neutral-200 w-full max-w-[200px]">
+      <div className="flex items-center justify-center gap-2 mb-4">
+        <span className={`text-xs ${!yearly ? "text-neutral-900 font-medium" : "text-neutral-400"}`}>Monthly</span>
+        <button
+          onClick={() => setYearly(!yearly)}
+          className={`relative w-10 h-5 rounded-full transition-colors ${yearly ? "bg-primary-500" : "bg-neutral-200"}`}
+        >
+          <motion.div
+            className="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm"
+            animate={{ x: yearly ? 20 : 0 }}
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          />
+        </button>
+        <span className={`text-xs ${yearly ? "text-neutral-900 font-medium" : "text-neutral-400"}`}>Yearly</span>
+      </div>
+      <div className="text-center">
+        <motion.div
+          key={yearly ? "yearly" : "monthly"}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-2xl font-bold text-neutral-900"
+        >
+          {yearly ? "€399" : "€49"}
+        </motion.div>
+        <div className="text-xs text-neutral-500">{yearly ? "/year" : "/month"}</div>
+        {yearly && <div className="text-xs text-green-600 mt-1">Save 32%</div>}
+      </div>
+    </div>
+  );
+}
+
 const features = [
   {
-    title: "Beautiful by default",
-    description: "Every component is crafted with attention to detail. No more generic AI aesthetics.",
+    title: "One command, complete website",
+    description: "Type /website in Claude Code, answer a few questions, and get a fully customized website. That's it.",
   },
   {
-    title: "Production ready",
-    description: "Built with Next.js 16, Tailwind CSS 4, and Framer Motion. Ready to deploy.",
+    title: "31 premium components",
+    description: "From interactive maps to cookie banners. Everything production-ready with Next.js 16 and Tailwind CSS 4.",
   },
   {
-    title: "Claude Code optimized",
-    description: "CLAUDE.md instructions help AI understand your design system perfectly.",
+    title: "SEO out of the box",
+    description: "Sitemap, robots.txt, JSON-LD structured data, OpenGraph. Perfect technical SEO from day one.",
   },
   {
-    title: "Fully customizable",
-    description: "Design tokens make it easy to adapt colors, typography, and spacing.",
+    title: "Editorial design aesthetic",
+    description: "Serif headlines, full-bleed photography, generous whitespace. Looks crafted, not AI-generated.",
   },
 ];
 
 const components = [
-  "Button", "Card", "Badge", "Input", "Textarea", "Select", "Avatar",
-  "Modal", "Tabs", "Accordion", "Toast", "Tooltip", "Progress",
-  "Switch", "Skeleton", "ParallaxImage", "AnimateOnScroll",
-  "CountUp", "Navbar", "Footer", "StatsSection", "FAQSection", "LogoCloud",
+  "Button", "Badge", "Card", "Input", "Textarea", "Avatar", "Modal",
+  "Tabs", "Accordion", "Toast", "Tooltip", "Progress", "Switch", "Skeleton",
+  "BentoGrid", "Marquee", "SpotlightCard", "PricingTable", "CommandPalette",
+  "ProjectCard", "BlogCard", "TeamCard", "AnimateOnScroll", "ThemeSwitcher",
+  "ValidatedForm", "Map", "CookieBanner", "Footer", "ParallaxImage",
+  "Testimonial", "FeatureCard",
 ];
 
 export default function LandingPage() {
@@ -59,9 +99,9 @@ export default function LandingPage() {
           <div className="flex items-center justify-between h-14 px-6 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200/60 shadow-sm">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-neutral-900 flex items-center justify-center">
-                <span className="text-white font-semibold text-sm">UI</span>
+                <span className="text-white font-semibold text-sm">CC</span>
               </div>
-              <span className="font-semibold text-neutral-900">Claude UI Kit</span>
+              <span className="font-semibold text-neutral-900">Claude Craft</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
@@ -128,7 +168,7 @@ export default function LandingPage() {
             >
               <motion.div variants={fadeUp}>
                 <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-6">
-                  Open Source UI Kit
+                  One command. Complete website.
                 </Badge>
               </motion.div>
 
@@ -136,7 +176,7 @@ export default function LandingPage() {
                 variants={fadeUp}
                 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-[1.1]"
               >
-                Build websites that feel{" "}
+                Build websites that look{" "}
                 <em className="italic">crafted</em>, not generated
               </motion.h1>
 
@@ -144,8 +184,8 @@ export default function LandingPage() {
                 variants={fadeUp}
                 className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed"
               >
-                A thoughtfully designed component library for developers using Claude Code.
-                Beautiful defaults, elegant typography, and smooth animations.
+                Type <code className="px-2 py-1 bg-white/20 rounded text-white">/website</code> in Claude Code.
+                Answer a few questions. Get a complete, beautiful website with SEO, maps, and more.
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
@@ -234,15 +274,15 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimateOnScroll animation="fadeInUp">
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-6">
-                <CountUp end={20} />+ components, infinite possibilities
+                <CountUp end={31} /> components, infinite possibilities
               </h2>
               <p className="text-lg text-neutral-600 leading-relaxed mb-8">
-                From buttons to complex animations. Everything you need to build
-                professional websites that stand out.
+                Interactive maps, cookie banners, pricing tables, team cards, blog layouts, and more.
+                All production-ready with dark mode support.
               </p>
               <Button variant="outline" asChild>
-                <Link href="/demo">
-                  See all components
+                <Link href="/demo/components">
+                  Browse components
                   <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -271,16 +311,157 @@ export default function LandingPage() {
       </section>
 
       {/* ========================================
+          COMPONENT SHOWCASE - Top 5 Premium Components
+          ======================================== */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-6">
+          <AnimateOnScroll animation="fadeInUp" className="text-center mb-16">
+            <Badge className="mb-4">Premium Components</Badge>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-6">
+              Built for <em className="italic">real</em> websites
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Not just UI elements — complete features ready to use.
+            </p>
+          </AnimateOnScroll>
+
+          {/* Component Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* 1. Interactive Map */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.1}>
+              <div className="group bg-neutral-50 rounded-2xl p-6 hover:bg-neutral-100 transition-colors">
+                <div className="aspect-[4/3] rounded-xl overflow-hidden mb-4">
+                  <Map
+                    latitude={52.3676}
+                    longitude={4.9041}
+                    zoom={13}
+                    height="100%"
+                    tileStyle="light"
+                    grayscale
+                  />
+                </div>
+                <h3 className="font-semibold text-neutral-900 mb-1">Interactive Map</h3>
+                <p className="text-sm text-neutral-600">OpenStreetMap integration. No API key needed. Free forever.</p>
+              </div>
+            </AnimateOnScroll>
+
+            {/* 2. SpotlightCard */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.2}>
+              <div className="group bg-neutral-50 rounded-2xl p-6 hover:bg-neutral-100 transition-colors">
+                <div className="aspect-[4/3] flex items-center justify-center mb-4">
+                  <SpotlightCard className="w-full h-full flex items-center justify-center">
+                    <div className="text-center p-6">
+                      <div className="w-12 h-12 rounded-xl bg-primary-500 mx-auto mb-3 flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <p className="text-sm font-medium text-neutral-900">Move your cursor</p>
+                      <p className="text-xs text-neutral-500">Watch the glow follow</p>
+                    </div>
+                  </SpotlightCard>
+                </div>
+                <h3 className="font-semibold text-neutral-900 mb-1">Spotlight Cards</h3>
+                <p className="text-sm text-neutral-600">Cursor-following glow effect. Makes any card feel premium.</p>
+              </div>
+            </AnimateOnScroll>
+
+            {/* 3. Logo Marquee */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.3}>
+              <div className="group bg-neutral-50 rounded-2xl p-6 hover:bg-neutral-100 transition-colors">
+                <div className="aspect-[4/3] flex items-center justify-center mb-4 overflow-hidden rounded-xl bg-white">
+                  <Marquee className="py-4" speed="slow">
+                    {["Stripe", "Vercel", "Linear", "Notion", "Figma", "Slack"].map((brand) => (
+                      <div key={brand} className="mx-6 px-4 py-2 bg-neutral-100 rounded-lg">
+                        <span className="text-sm font-medium text-neutral-600">{brand}</span>
+                      </div>
+                    ))}
+                  </Marquee>
+                </div>
+                <h3 className="font-semibold text-neutral-900 mb-1">Infinite Marquee</h3>
+                <p className="text-sm text-neutral-600">Smooth infinite scroll. Perfect for logos and testimonials.</p>
+              </div>
+            </AnimateOnScroll>
+
+            {/* 4. Pricing Toggle */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.4}>
+              <div className="group bg-neutral-50 rounded-2xl p-6 hover:bg-neutral-100 transition-colors">
+                <div className="aspect-[4/3] flex items-center justify-center mb-4">
+                  <PricingToggleDemo />
+                </div>
+                <h3 className="font-semibold text-neutral-900 mb-1">Pricing Table</h3>
+                <p className="text-sm text-neutral-600">Monthly/yearly toggle with animated transitions.</p>
+              </div>
+            </AnimateOnScroll>
+
+            {/* 5. Cookie Banner */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.5}>
+              <div className="group bg-neutral-50 rounded-2xl p-6 hover:bg-neutral-100 transition-colors">
+                <div className="aspect-[4/3] flex items-end justify-center mb-4 bg-neutral-200/50 rounded-xl p-4">
+                  <div className="w-full bg-white rounded-xl shadow-lg border border-neutral-200 p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-neutral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-xs text-neutral-600 flex-1">We use cookies to enhance your experience.</p>
+                      <Button size="sm" className="text-xs h-7">Accept</Button>
+                    </div>
+                  </div>
+                </div>
+                <h3 className="font-semibold text-neutral-900 mb-1">Cookie Banner</h3>
+                <p className="text-sm text-neutral-600">GDPR compliant. Auto-remembers user choice.</p>
+              </div>
+            </AnimateOnScroll>
+
+            {/* 6. Theme Switcher */}
+            <AnimateOnScroll animation="fadeInUp" delay={0.6}>
+              <div className="group bg-neutral-50 rounded-2xl p-6 hover:bg-neutral-100 transition-colors">
+                <div className="aspect-[4/3] flex items-center justify-center mb-4 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 rounded-xl">
+                  <div className="flex gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center">
+                      <svg className="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                    </div>
+                    <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center ring-2 ring-white/30">
+                      <svg className="w-6 h-6 text-blue-300" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <h3 className="font-semibold text-neutral-900 mb-1">Dark Mode</h3>
+                <p className="text-sm text-neutral-600">System preference detection. 5 color themes included.</p>
+              </div>
+            </AnimateOnScroll>
+          </div>
+
+          <AnimateOnScroll animation="fadeInUp" delay={0.4} className="text-center mt-12">
+            <Button variant="outline" size="lg" asChild>
+              <Link href="/demo/components">
+                View all 31 components
+                <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </Button>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* ========================================
           DEMO PREVIEW - Screenshot/visual
           ======================================== */}
-      <section className="py-32 bg-white overflow-hidden">
+      <section className="py-32 bg-neutral-50 overflow-hidden">
         <div className="container mx-auto px-6">
           <AnimateOnScroll animation="fadeInUp" className="text-center mb-16">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-6">
               See it in action
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              A complete business website template showcasing all components working together.
+              9 page templates, interactive maps, cookie consent, SEO setup — everything a real business website needs.
             </p>
           </AnimateOnScroll>
 
@@ -339,12 +520,11 @@ export default function LandingPage() {
               <em className="italic">beautiful</em>?
             </h2>
             <p className="text-lg text-neutral-400 mb-10 max-w-xl mx-auto">
-              Clone the repository, open Claude Code, and start creating.
-              It's that simple.
+              Clone the repo, open Claude Code, type <code className="px-2 py-0.5 bg-neutral-800 rounded text-neutral-300">/website</code> — done.
             </p>
 
             {/* Code snippet */}
-            <div className="bg-neutral-800 rounded-xl p-6 mb-10 text-left max-w-lg mx-auto">
+            <div className="bg-neutral-800 rounded-xl p-6 mb-10 text-left max-w-xl mx-auto">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-3 h-3 rounded-full bg-red-400" />
                 <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -356,6 +536,11 @@ export default function LandingPage() {
                 <span className="text-neutral-500">$</span> cd claude-craft && npm install
                 <br />
                 <span className="text-neutral-500">$</span> npm run dev
+                <br />
+                <br />
+                <span className="text-green-400"># In Claude Code:</span>
+                <br />
+                <span className="text-neutral-500">&gt;</span> /website
               </code>
             </div>
 
@@ -386,9 +571,9 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded bg-neutral-800 flex items-center justify-center">
-                <span className="text-white font-semibold text-xs">UI</span>
+                <span className="text-white font-semibold text-xs">CC</span>
               </div>
-              <span>Claude UI Kit</span>
+              <span>Claude Craft</span>
             </div>
             <div className="flex items-center gap-6">
               <Link href="/demo" className="hover:text-white transition-colors">Demo</Link>

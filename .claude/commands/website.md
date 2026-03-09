@@ -1,516 +1,328 @@
-# /website - Build a complete website
+# /website - Build Your Website
 
-You're going to build a complete website for the user. But first, ask a few short questions to understand what they need.
-
-## STEP 1: Ask questions
-
-Ask these questions one by one (or in small groups). Wait for answers before proceeding.
-
-### Question 1: Basics
-```
-I'm going to build a complete website for you. First, a few questions:
-
-**Business name:** What's your business called?
-**Location:** Where is it located?
-**In short:** What do you do in 1 sentence?
-```
-
-### Question 2: Services
-```
-**Services:** What are your 3-4 main services or products?
-
-(For example: "Web design, SEO, Branding" or "Fresh breads, Cakes, Catering")
-```
-
-### Question 3: Unique selling points
-```
-**What makes you unique?** Think about:
-- Years of experience
-- Team size
-- Specialization
-- Approach or methodology
-- Certifications or awards
-
-(You can mention multiple things)
-```
-
-### Question 4: Tone of voice (optional)
-```
-**How do you want to come across?** Choose what fits best:
-
-1. Professional & business-like
-2. Warm & personal
-3. Modern & innovative
-4. Artisanal & traditional
-5. Other (describe)
-
-(Or skip, and I'll choose something fitting)
-```
-
-## STEP 2: Confirm the plan
-
-After the questions, give a brief summary:
-
-```
-**I'm going to build the following:**
-
-🏢 [Business name] - [Type of business]
-📍 [Location]
-💼 Services: [Service 1], [Service 2], [Service 3]
-✨ USPs: [Unique points]
-🎨 Style: [Chosen tone]
-
-**Pages I'll create:**
-- Homepage (hero, stats, services preview, testimonials, CTA)
-- About (story, team, values)
-- Services (all services detailed)
-- Contact (form, contact details, FAQ)
-
-Should I begin?
-```
-
-Wait for confirmation before generating.
+You are building a website by modifying existing demo files. Follow these steps EXACTLY.
 
 ---
 
-## STEP 3: Generate the website
+## STEP 1: Industry Selection
 
-After confirmation, generate all 4 pages.
+Send this EXACT message:
 
-### Choosing photos per industry
-
-**Tech / Digital / Marketing / IT:**
 ```
-Hero: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85"
-Team: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=85"
-Office: "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1920&q=85"
-Work: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=85"
-Meeting: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=85"
-```
+🚀 **Let's build your website!**
 
-**Creative / Design / Architecture / Photography:**
-```
-Hero: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1920&q=85"
-Studio: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85"
-Work: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=85"
+**Which type of website are you building?**
+
+1. 🖥️ **SaaS** — Software product, app, or tech startup
+2. 🍽️ **Restaurant** — Restaurant, café, bakery, or food business
+3. 🎨 **Agency** — Creative, digital, or marketing agency
+4. 👤 **Portfolio** — Personal portfolio or freelancer
+5. 🛍️ **E-commerce** — Online store or product brand
+6. 📋 **Other** — I'll describe my business
+
+**Reply with a number (1-6)**
 ```
 
-**Business services / Consultancy / Finance / Legal:**
+Wait for their response.
+
+---
+
+## STEP 2: Collect Business Info
+
+Based on their choice, send the appropriate follow-up:
+
+**For options 1-5:**
 ```
-Hero: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=85"
-Office: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85"
-Meeting: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=85"
+Great choice! Now tell me about your business:
+
+1. **Name:** Your business/brand name
+2. **What you do:** One sentence description
+3. **Location:** City or "Remote/Online"
+4. **Key differentiator:** What makes you special?
+
+**Example:** "FlowMetrics, project management SaaS that uses AI to predict deadlines, San Francisco, founded by ex-Google engineers"
 ```
 
-**Food / Hospitality / Bakery / Restaurant:**
+**For option 6 (Other):**
 ```
-Hero: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=85"
-Interior: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=85"
-Product: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=85"
+Tell me about your business:
+
+1. **Name:** Your business name
+2. **Industry:** What type of business
+3. **What you do:** One sentence description
+4. **Location:** City or region
+5. **Services/Products:** 3-4 main offerings
+
+**Example:** "HealthFirst Clinic, medical practice, family healthcare services in Rotterdam, Services: General Practice, Pediatrics, Preventive Care"
 ```
 
-**Health / Wellness / Sports / Fitness:**
+Wait for their response. Do NOT ask follow-up questions.
+
+---
+
+## STEP 3: Load Template & Build
+
+After they respond, say:
 ```
-Hero: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1920&q=85"
-Space: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1920&q=85"
+**Building your website now...** ⏳
 ```
 
-**Construction / Real Estate / Interior:**
-```
-Hero: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=85"
-Project: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=85"
+### Load the appropriate template:
+
+Based on their industry choice, read the corresponding template file:
+
+- **SaaS (1):** Read `.claude/templates/saas.md`
+- **Restaurant (2):** Read `.claude/templates/restaurant.md`
+- **Agency (3):** Read `.claude/templates/agency.md`
+- **Portfolio (4):** Read `.claude/templates/portfolio.md`
+- **E-commerce (5):** Read `.claude/templates/ecommerce.md`
+- **Other (6):** Use the generic instructions below
+
+Use the template content as your guide for:
+- Copy/messaging style
+- Section structure
+- Photo URLs
+- Navigation items
+- Stats and testimonials
+
+**IMPORTANT:** Replace all placeholder text with the user's actual business info. Combine template content with their specific details.
+
+---
+
+## INDUSTRY-SPECIFIC COMPONENTS
+
+Based on the industry, import and use these components on the homepage:
+
+### SaaS (1)
+```tsx
+import { FeatureGrid, FeatureIcons } from "@/components/ui/FeatureGrid";
+import { LogoCloud } from "@/components/ui/LogoCloud";
+import { TestimonialGrid } from "@/components/ui/TestimonialCard";
+
+// Use on homepage:
+// - FeatureGrid with icons for features section (replace services)
+// - LogoCloud for "Trusted by" section
+// - TestimonialGrid for social proof
+// - Link to /demo/pricing prominently
 ```
 
-**Team photos (all industries):**
+### Restaurant (2)
+```tsx
+import { MenuSection, OpeningHours, ReservationCTA } from "@/components/ui/MenuSection";
+import { Map } from "@/components/ui/Map";
+import { TestimonialGrid } from "@/components/ui/TestimonialCard";
+
+// Use on homepage:
+// - MenuSection for menu highlights (replace services)
+// - OpeningHours block
+// - ReservationCTA for booking
+// - Map with restaurant location
+// - TestimonialGrid for reviews
 ```
-"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
-"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
-"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
-"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+
+### Agency (3)
+```tsx
+import { LogoCloud } from "@/components/ui/LogoCloud";
+import { ProcessSteps } from "@/components/ui/Timeline";
+import { TestimonialGrid } from "@/components/ui/TestimonialCard";
+import { Marquee } from "@/components/ui/Marquee";
+
+// Use on homepage:
+// - LogoCloud or Marquee for client logos
+// - ProcessSteps for "How we work" section
+// - TestimonialGrid for client testimonials
+// - Keep services section with portfolio link
+```
+
+### Portfolio (4)
+```tsx
+import { Timeline, ProcessSteps } from "@/components/ui/Timeline";
+import { FeatureGrid } from "@/components/ui/FeatureGrid";
+import { TestimonialGrid } from "@/components/ui/TestimonialCard";
+import { AvailabilityBadge } from "@/components/ui/NewsletterSignup";
+
+// Use on homepage:
+// - AvailabilityBadge in hero
+// - FeatureGrid for services/skills
+// - Timeline on about page for experience
+// - ProcessSteps for "How I work"
+// - TestimonialGrid for client reviews
+```
+
+### E-commerce (5)
+```tsx
+import { ProductCard, ProductGrid, CollectionCard } from "@/components/ui/ProductCard";
+import { TrustBadges, TrustIcons } from "@/components/ui/LogoCloud";
+import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
+import { TestimonialGrid } from "@/components/ui/TestimonialCard";
+
+// Use on homepage:
+// - TrustBadges row (shipping, returns, secure)
+// - ProductGrid for featured products or CollectionCard for categories
+// - TestimonialGrid for customer reviews
+// - NewsletterSignup for email capture
 ```
 
 ---
 
-## PAGE TEMPLATES
+## EDITING INSTRUCTIONS
 
-Generate these 4 files plus update the layout:
+### File 1: `app/demo/layout.tsx`
 
-1. `app/demo/page.tsx` - Homepage
-2. `app/demo/about/page.tsx` - About
-3. `app/demo/services/page.tsx` - Services
-4. `app/demo/contact/page.tsx` - Contact
-5. Update `app/demo/layout.tsx` - Business name in navbar
+**Read the file first**, then make these edits:
+
+**Edit 1a - Navigation items:**
+Find the `demoNavItems` array and replace it based on the template's recommended navigation.
+
+**Edit 1b - Logo initials:**
+Find `<span className="text-white font-semibold text-sm">` and change to their business initials.
+
+**Edit 1c - Company name:**
+Find `Acme Studio` in the header and replace with their business name.
+
+**Edit 1d - Footer:**
+Update the `<Footer` component:
+- `companyName` → their name
+- `description` → their tagline/description
+- `sections` array → their contact info
+- Update email, phone, location
 
 ---
 
-### Homepage Template (`app/demo/page.tsx`)
+### File 2: `app/demo/page.tsx` (Homepage)
+
+**Read the file first**, then make these edits:
+
+**Edit 2a - Hero badge:**
+Change `<Badge>` text to match template style (e.g., "Trusted by 10,000+ teams" for SaaS, "Est. 1998" for Restaurant).
+
+**Edit 2b - Hero headline:**
+Change the `<h1>` text. Keep the `<em className="italic">` pattern for emphasis.
+
+**Edit 2c - Hero subline:**
+Change the paragraph after h1 to their value proposition.
+
+**Edit 2d - Hero image:**
+Change `<img src="..."` to the appropriate template photo URL.
+
+**Edit 2e - Services array:**
+Replace `const services = [...]` with their services, using template structure and photo URLs.
+
+**Edit 2f - Stats:**
+Replace `const stats = [...]` with template-appropriate stats, customized with realistic numbers.
+
+**Edit 2g - Testimonials:**
+Replace `const testimonials = [...]` with template testimonials, updating names/companies to fit their locale.
+
+---
+
+### File 3: `app/demo/about/page.tsx`
+
+**Edit 3a - Hero headline:** e.g., "Over [Business Name]" or "Our Story"
+**Edit 3b - Story section:** Use template story structure with their details
+**Edit 3c - Values:** Use template values or customize
+**Edit 3d - Photos:** Industry-appropriate images from template
+
+---
+
+### File 4: `app/demo/services/page.tsx`
+
+**Edit 4a - Page title:** Match industry (e.g., "Menu" for restaurant, "Features" for SaaS)
+**Edit 4b - Services list:** Their actual services with template descriptions as inspiration
+**Edit 4c - Photos:** Industry-appropriate images
+
+---
+
+### File 5: `app/demo/contact/page.tsx`
+
+**Edit 5a - Contact info:** Their email, phone, address
+**Edit 5b - FAQ:** Use template FAQs customized to their business
+**Edit 5c - LocalBusinessSchema:** Update structured data
+**Edit 5d - Map coordinates:** Use Google Maps to find their city's lat/long
 
 ```tsx
-"use client";
-
-import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { AnimateOnScroll, CountUp } from "@/components/ui/AnimateOnScroll";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-};
-
-const services = [
-  {
-    number: "01",
-    title: "[SERVICE 1]",
-    description: "[DESCRIPTION]",
-    image: "[PHOTO URL]",
-  },
-  {
-    number: "02",
-    title: "[SERVICE 2]",
-    description: "[DESCRIPTION]",
-    image: "[PHOTO URL]",
-  },
-  {
-    number: "03",
-    title: "[SERVICE 3]",
-    description: "[DESCRIPTION]",
-    image: "[PHOTO URL]",
-  },
-];
-
-const testimonials = [
-  {
-    quote: "[REALISTIC QUOTE]",
-    author: "[NAME]",
-    role: "[TITLE, COMPANY]",
-    image: "[PORTRAIT URL]",
-  },
-  {
-    quote: "[REALISTIC QUOTE]",
-    author: "[NAME]",
-    role: "[TITLE, COMPANY]",
-    image: "[PORTRAIT URL]",
-  },
-  {
-    quote: "[REALISTIC QUOTE]",
-    author: "[NAME]",
-    role: "[TITLE, COMPANY]",
-    image: "[PORTRAIT URL]",
-  },
-];
-
-const stats = [
-  { value: [X], suffix: "+", label: "[LABEL]" },
-  { value: [X], suffix: "%", label: "[LABEL]" },
-  { value: [X], suffix: "", label: "[LABEL]" },
-  { value: [X], suffix: "", label: "[LABEL]" },
-];
-
-export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  return (
-    <div className="min-h-screen">
-      {/* HERO */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] overflow-hidden -mt-20">
-        <motion.div className="absolute inset-0" style={{ y: heroImageY }}>
-          <img
-            src="[HERO PHOTO]"
-            alt="[BUSINESS NAME]"
-            className="w-full h-[120%] object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/30 via-neutral-900/20 to-neutral-900/60" />
-        </motion.div>
-
-        <motion.div
-          className="relative h-full flex flex-col justify-end pb-20 md:pb-32 pt-20"
-          style={{ opacity: heroOpacity }}
-        >
-          <div className="container mx-auto px-6">
-            <motion.div
-              initial="initial"
-              animate="animate"
-              variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
-              className="max-w-3xl"
-            >
-              <motion.div variants={fadeUp}>
-                <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-6">
-                  [BADGE - e.g. "Welcome to Business Name"]
-                </Badge>
-              </motion.div>
-
-              <motion.h1
-                variants={fadeUp}
-                className="font-serif text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-[1.1]"
-              >
-                [HEADLINE with <em className="italic">emphasis</em>]
-              </motion.h1>
-
-              <motion.p
-                variants={fadeUp}
-                className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed"
-              >
-                [SUBLINE - what they do and for whom]
-              </motion.p>
-
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100" asChild>
-                  <Link href="/demo/contact">
-                    [CTA - e.g. "Start a project"]
-                    <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-                  <Link href="/demo/services">[SECONDARY CTA]</Link>
-                </Button>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <motion.div
-            className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <div className="w-1 h-2 bg-white/50 rounded-full" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* STATS */}
-      <section className="py-20 bg-white border-b border-neutral-100">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {stats.map((stat, index) => (
-              <AnimateOnScroll key={stat.label} animation="fadeInUp" delay={index * 0.1} className="text-center">
-                <p className="font-serif text-4xl md:text-5xl text-neutral-900 mb-2">
-                  <CountUp end={stat.value} />{stat.suffix}
-                </p>
-                <p className="text-sm text-neutral-500">{stat.label}</p>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6">
-          <AnimateOnScroll animation="fadeInUp" className="max-w-2xl mb-20">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-6">
-              [SECTION TITLE]
-            </h2>
-            <p className="text-lg text-neutral-600 leading-relaxed">
-              [SECTION INTRO]
-            </p>
-          </AnimateOnScroll>
-
-          <div className="space-y-32">
-            {services.map((service, index) => (
-              <AnimateOnScroll
-                key={service.number}
-                animation="fadeInUp"
-                className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${index % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
-              >
-                <div className={`relative ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                    <img src={service.image} alt={service.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-neutral-900 rounded-2xl flex items-center justify-center text-white font-serif text-2xl">
-                    {service.number}
-                  </div>
-                </div>
-                <div className={index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}>
-                  <h3 className="font-serif text-3xl md:text-4xl text-neutral-900 mb-4">{service.title}</h3>
-                  <p className="text-lg text-neutral-600 leading-relaxed mb-6">{service.description}</p>
-                  <Button variant="outline" asChild>
-                    <Link href="/demo/services">
-                      Learn more
-                      <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
-                  </Button>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* QUOTE */}
-      <section className="relative h-[60vh] min-h-[400px]">
-        <img src="[TEAM PHOTO]" alt="[BUSINESS NAME]" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-neutral-900/40" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <AnimateOnScroll animation="fadeInUp" className="text-center px-6">
-            <p className="font-serif text-3xl md:text-4xl lg:text-5xl text-white max-w-3xl leading-tight">
-              "[INSPIRING QUOTE]"
-            </p>
-          </AnimateOnScroll>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-32 bg-neutral-50">
-        <div className="container mx-auto px-6">
-          <AnimateOnScroll animation="fadeInUp" className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-6">
-              What clients say
-            </h2>
-          </AnimateOnScroll>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((t, index) => (
-              <AnimateOnScroll key={t.author} animation="fadeInUp" delay={index * 0.1}>
-                <div className="bg-white rounded-2xl p-8 h-full flex flex-col">
-                  <svg className="w-10 h-10 text-neutral-200 mb-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                  <p className="text-neutral-600 leading-relaxed mb-6 flex-grow">{t.quote}</p>
-                  <div className="flex items-center gap-4">
-                    <img src={t.image} alt={t.author} className="w-12 h-12 rounded-full object-cover" />
-                    <div>
-                      <p className="font-semibold text-neutral-900">{t.author}</p>
-                      <p className="text-sm text-neutral-500">{t.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-32 bg-neutral-900">
-        <div className="container mx-auto px-6">
-          <AnimateOnScroll animation="fadeInUp" className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-6">
-              [CTA HEADLINE]
-            </h2>
-            <p className="text-lg text-neutral-400 mb-10 max-w-xl mx-auto">
-              [CTA TEXT]
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100" asChild>
-                <Link href="/demo/contact">
-                  [BUTTON TEXT]
-                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="border-neutral-700 text-white hover:bg-neutral-800" asChild>
-                <Link href="/demo/about">[SECONDARY]</Link>
-              </Button>
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
-    </div>
-  );
-}
+<Map
+  latitude={52.3676}   // Their city
+  longitude={4.9041}
+  zoom={14}
+  marker={{
+    title: "BUSINESS_NAME",
+    popup: "ADDRESS",
+  }}
+/>
 ```
 
 ---
 
-### About, Services, Contact
+### File 6: `app/demo/pricing/page.tsx` (if applicable)
 
-Use the same structure as the current demo pages in `app/demo/about/page.tsx`, `app/demo/services/page.tsx`, and `app/demo/contact/page.tsx`. Adapt the content based on the user's answers.
-
-**Key elements per page:**
-
-**About:**
-- Hero with team/office photo
-- Story section (how it started, growth, vision)
-- Values grid (4 values)
-- Team photos with grayscale effect
-- Stats section
-- CTA
-
-**Services:**
-- Hero with relevant photo
-- Services detailed with alternating layout
-- Per service: title, description, 6 features
-- Process/methodology grid (6 steps)
-- CTA
-
-**Contact:**
-- Compact hero
-- Form + contact details side by side
-- FAQ section (3 questions relevant to industry)
-- "Call us" CTA
+For SaaS, Agency, Portfolio, or E-commerce, update pricing:
+- Plan names and descriptions
+- Price points (realistic for their industry)
+- Feature lists
+- Popular plan indicator
 
 ---
 
-### Layout Update
+## CITY COORDINATES (Common)
 
-Update `app/demo/layout.tsx` - find the navbar and replace business name:
-
-```tsx
-<Link href="/demo" className="flex items-center gap-3">
-  <div className="w-10 h-10 rounded-xl bg-neutral-900 flex items-center justify-center">
-    <span className="text-white font-semibold text-sm">[INITIALS]</span>
-  </div>
-  <span className="font-semibold text-neutral-900 text-lg">
-    [BUSINESS NAME]
-  </span>
-</Link>
+```
+Amsterdam: 52.3676, 4.9041
+Rotterdam: 51.9244, 4.4777
+Utrecht: 52.0907, 5.1214
+Den Haag: 52.0705, 4.3007
+London: 51.5074, -0.1278
+Paris: 48.8566, 2.3522
+Berlin: 52.5200, 13.4050
+New York: 40.7128, -74.0060
+San Francisco: 37.7749, -122.4194
+Los Angeles: 34.0522, -118.2437
 ```
 
 ---
 
-## STEP 4: Finish up
+## STEP 4: Completion Message
 
-After generating all pages:
+After ALL edits are done, send:
 
 ```
-✅ **Website generated!**
+✅ **Your website is ready!**
 
-I've created the following pages:
-- `/demo` - Homepage
-- `/demo/about` - About
-- `/demo/services` - Services
-- `/demo/contact` - Contact
+I've built a complete [INDUSTRY] website with:
+- ✓ Homepage (hero, features, testimonials, stats)
+- ✓ About page (story, values)
+- ✓ Services/[RELEVANT] page
+- ✓ Contact page (info, FAQ, map)
+[+ any other pages]
 
-**View:** Open http://localhost:3000/demo
+🌐 **View it:** http://localhost:3000/demo
 
-**Want to adjust anything?** You can ask for:
-- Different colors
-- Additional pages (`/page pricing`, `/page portfolio`)
-- Add or remove sections
-- Modify text
+**Want changes?** Just ask:
+- "Change the headline to..."
+- "Use different photos"
+- "Add more testimonials"
+- "Make the colors warmer"
 ```
 
 ---
 
-## IMPORTANT
+## CRITICAL RULES
 
-1. **Ask questions FIRST** - only generate after confirmation
-2. **Wait for answers** - don't fill in yourself
-3. **Be conversational** - not too formal
-4. **Use the exact code structure** above
-5. **All imports must be correct**
-6. **No lorem ipsum** - real, fitting content
-7. **Consistent business name** across all pages
+1. **Read before edit** - Always read a file before editing
+2. **Use Edit tool** - Never rewrite entire files, use targeted edits
+3. **Follow template** - Use template content as your guide
+4. **Customize everything** - Replace ALL placeholders with real content
+5. **No lorem ipsum** - Write real, believable content
+6. **Consistent naming** - Use same business name everywhere
+7. **Match locale** - Dutch business = Dutch names in testimonials
+8. **One question round** - Never ask follow-up questions after step 2
+
+---
+
+## IF SOMETHING FAILS
+
+If an edit fails:
+1. Read the file again to see current state
+2. Try a smaller, more specific edit
+3. Continue with other files
+4. Report any issues at the end

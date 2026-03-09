@@ -2,35 +2,47 @@
 
 Welcome to Claude Craft! This UI kit helps you build beautiful websites that don't look "AI-generated".
 
-## Available Commands
+## Quick Start
+
+Just type:
+```
+/website
+```
+
+This starts an interactive wizard that:
+1. Asks about your business (name, what you do, location)
+2. Lets you choose which pages you want
+3. Builds everything automatically
+
+**That's it!** Your complete website will be ready in seconds.
+
+## All Commands
 
 | Command | Description |
 |---------|-------------|
-| `/website [description]` | Generate a complete 4-page website |
-| `/page [type]` | Add a page: `pricing`, `portfolio`, `blog`, `faq`, `team` |
-| `/patterns` | View section patterns (hero, stats, testimonials, etc.) |
-| `/components` | View component usage examples |
-| `/photos` | Get quality stock photo URLs by category |
-| `/darkmode` | Enable dark mode for your site |
-| `/theme` | Apply color theme presets (ocean, forest, sunset, etc.) |
-| `/forms` | Form validation guide with Zod + React Hook Form |
+| `/website` | **Start here!** Interactive website builder |
+| `/page [type]` | Add a page: `portfolio`, `blog`, `team`, `pricing`, `faq` |
+| `/seo` | SEO setup with JSON-LD structured data |
+| `/components` | Component usage examples |
+| `/patterns` | Section code templates |
+| `/photos` | Stock photo URLs by category |
+| `/darkmode` | Enable dark mode |
+| `/theme` | Color theme presets |
+| `/forms` | Form validation guide |
 
-## Quick Start
+## After Building
 
-**Option 1: Generate a complete website**
+Want to make changes? Just ask:
 ```
-/website A bakery in Austin called "Golden Crust". Family business since 1952.
-```
-
-**Option 2: Start from the demo**
-The `/demo` folder contains a complete business website. Modify it to fit your needs:
-```
-"Change the business name to 'Acme Corp' and make it a tech consulting company"
+"Change the colors to blue"
+"Add a pricing page"
+"Make the headline shorter"
+"Add more testimonials"
 ```
 
-**Option 3: Add pages incrementally**
+Want more pages?
 ```
-/page pricing
+/page portfolio
 /page blog
 /page team
 ```
@@ -62,16 +74,25 @@ app/
     ├── layout.tsx        # Navbar + footer
     ├── page.tsx          # Homepage
     ├── about/page.tsx
+    ├── blog/page.tsx
+    ├── components/page.tsx  # Component showcase
+    ├── contact/page.tsx
+    ├── portfolio/page.tsx
     ├── services/page.tsx
-    └── contact/page.tsx
+    └── team/page.tsx
 
 components/
-├── ui/                   # Button, Badge, Card, Input, etc.
-└── sections/             # Hero, Features, Testimonials, etc.
+├── ui/                   # All UI components
+│   ├── Button, Badge, Card, Input...
+│   ├── BentoGrid, Marquee, SpotlightCard...
+│   ├── ProjectCard, BlogCard, TeamCard...
+│   └── PricingTable, CommandPalette...
+└── sections/             # Page sections
 ```
 
 ## Need More Help?
 
+- `/seo` - SEO setup with JSON-LD structured data
 - `/patterns` - Code for common section layouts
 - `/components` - How to use each UI component
 - `/photos` - Stock photos organized by category

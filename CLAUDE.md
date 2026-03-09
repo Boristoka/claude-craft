@@ -2,21 +2,33 @@
 
 A UI kit for building beautiful websites with Claude Code. Editorial design style inspired by Linear, Stripe, and Awwwards-winning sites.
 
-## Commands
+## Quick Start
+
+```
+/website
+```
+
+This starts an interactive wizard that:
+1. Asks your industry (SaaS, Restaurant, Agency, Portfolio, E-commerce)
+2. Collects your business info
+3. Builds a complete, customized website automatically
+
+**Industry Templates** — Pre-built content, photos, and structure for your specific niche. No lorem ipsum.
+
+## All Commands
 
 | Command | Description |
 |---------|-------------|
+| `/website` | **Start here!** Interactive wizard to build your website |
+| `/page [type]` | Add a page: portfolio, blog, team, pricing, faq |
+| `/seo` | SEO setup guide with JSON-LD structured data |
 | `/help` | Overview and getting started |
-| `/website [description]` | Generate complete 4-page website |
-| `/page [type]` | Add page: pricing, portfolio, blog, faq, team |
-| `/patterns` | Section code patterns (hero, stats, CTA, etc.) |
 | `/components` | Component usage examples |
+| `/patterns` | Section code templates |
 | `/photos` | Stock photo URLs by category |
 | `/darkmode` | Enable dark mode |
 | `/theme` | Apply color theme presets |
 | `/forms` | Form validation with Zod |
-
-**Example:** `/website A bakery in Austin called "Golden Crust". Family business since 1952.`
 
 ---
 
@@ -83,21 +95,57 @@ app/
 └── demo/                 # Your website
     ├── layout.tsx        # Navbar + footer
     ├── page.tsx          # Homepage
-    └── [page]/page.tsx   # Other pages
+    ├── about/            # About page
+    ├── blog/             # Blog overview
+    ├── components/       # Component showcase
+    ├── contact/          # Contact form
+    ├── portfolio/        # Project showcase
+    ├── pricing/          # Pricing plans
+    ├── services/         # Services overview
+    ├── team/             # Team members
+    ├── privacy/          # Privacy Policy (template)
+    └── terms/            # Terms of Service (template)
 
-components/
-├── ui/                   # Button, Badge, Card, Input, etc.
-└── sections/             # Hero, Features, Testimonials, etc.
+components/ui/            # 45+ components
+├── Button, Badge, Card, Input, Tabs, Modal...
+├── BentoGrid, Marquee, SpotlightCard, PricingTable...
+├── ProjectCard, BlogCard, TeamCard, CommandPalette...
+├── AnimateOnScroll, ThemeSwitcher, ValidatedForm...
+├── TestimonialCard, TestimonialGrid, TestimonialCarousel
+├── FeatureGrid (icons + grid for SaaS/services)
+├── LogoCloud, TrustBadges (client logos, trust indicators)
+├── Timeline, ProcessSteps (experience, how-it-works)
+├── MenuSection, OpeningHours, ReservationCTA (restaurant)
+├── ProductCard, ProductGrid, CollectionCard (e-commerce)
+├── NewsletterSignup, AvailabilityBadge (email capture)
+├── CookieBanner (GDPR-compliant, auto-included)
+└── Map (OpenStreetMap, no API key needed)
 ```
 
 **Adding pages:** Create `app/demo/[name]/page.tsx` with `"use client"` directive.
 
 ---
 
+## Hero Pattern
+
+All pages use full-bleed hero with parallax:
+```tsx
+<section className="relative h-[60vh] min-h-[450px] overflow-hidden -mt-20">
+  <motion.div style={{ y: heroImageY }}>
+    <img src="..." className="w-full h-[120%] object-cover" />
+    <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/40 ... to-neutral-900/70" />
+  </motion.div>
+  {/* Content at bottom with white text */}
+  <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm" />
+  <h1 className="text-white">...</h1>
+</section>
+```
+
 ## Checklist
 
 - [ ] `"use client"` at top
 - [ ] `font-serif` for headings
+- [ ] Full-bleed hero with parallax photo
 - [ ] `py-32` section spacing
 - [ ] `AnimateOnScroll` for reveals
 - [ ] Responsive: `md:` and `lg:` breakpoints

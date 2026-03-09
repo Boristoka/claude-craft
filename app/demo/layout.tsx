@@ -17,7 +17,6 @@ import { CookieBanner } from "@/components/ui/CookieBanner";
 
 const demoNavItems = [
   { label: "Home", href: "/demo" },
-  { label: "Components", href: "/demo/components" },
   { label: "About", href: "/demo/about" },
   { label: "Services", href: "/demo/services" },
   { label: "Portfolio", href: "/demo/portfolio" },

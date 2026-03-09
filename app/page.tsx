@@ -285,7 +285,7 @@ export default function LandingPage() {
                 All production-ready with dark mode support.
               </p>
               <Button variant="outline" asChild>
-                <Link href="/demo/components">
+                <Link href="/components">
                   Browse components
                   <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -444,7 +444,7 @@ export default function LandingPage() {
 
           <AnimateOnScroll animation="fadeInUp" delay={0.4} className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
-              <Link href="/demo/components">
+              <Link href="/components">
                 View all 70+ components
                 <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

@@ -7,7 +7,7 @@ A professional UI kit for building beautiful websites with Claude Code. No gener
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)
 ![TypeScript](https://img.shields.io/badge/TypeScript-✓-3178c6)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-✓-ff69b4)
+![Components](https://img.shields.io/badge/Components-70+-10b981)
 
 ---
 
@@ -34,10 +34,6 @@ npm run dev
 
 **Live Demo:** [https://claude-ui-kit.vercel.app](https://claude-ui-kit.vercel.app)
 
-**URLs:**
-- `http://localhost:3000` - UI Kit landing page
-- `http://localhost:3000/demo` - Business website demo
-
 ---
 
 ## How it works with Claude Code
@@ -52,98 +48,99 @@ npm run dev
 You: /website
 
 Claude: 🚀 Let's build your website!
-        1. Business name?
-        2. What do you do?
+        What industry are you in?
+        SaaS / Restaurant / Agency / Portfolio / E-commerce
+
+You: Restaurant
+
+Claude: Great! Tell me about your restaurant:
+        1. Name?
+        2. Type of cuisine?
         3. Location?
-        4. What makes you special?
 
-You: Golden Crust Bakery, artisan bread and pastries in Austin.
-     Family business since 1952, everything handmade.
+You: Bella Italia, authentic Italian in Amsterdam.
+     Family recipes, cozy atmosphere.
 
-Claude: Which pages do you want?
-        ✅ Homepage, About, Services, Contact (always)
-        📁 Portfolio? 📝 Blog? 👥 Team? 💰 Pricing?
+Claude: Building your website in app/bella-italia/...
 
-You: Add portfolio and team
+        ✅ Homepage with hero
+        ✅ Menu page with MenuSection component
+        ✅ About page
+        ✅ Contact with Map
+        ✅ Navbar & Footer
 
-Claude: What's your vibe? Professional / Warm / Modern / Creative / Premium
-
-You: Warm & personal
-
-Claude: Building now... ✅ Done!
-        View at: http://localhost:3000/demo
+        Done! View at: http://localhost:3000/bella-italia
 ```
+
+**Each website gets its own folder** - no overwriting templates.
 
 **Adding more pages later:**
 ```
 /page pricing
 /page blog
+/page team
 ```
 
-**Making changes:**
-```
-"Change the colors to blue"
-"Add more team members"
-"Make the headline shorter"
-```
+---
+
+## All Commands
+
+| Command | Description |
+|---------|-------------|
+| `/website` | **Start here!** Interactive wizard to build your website |
+| `/page [type]` | Add a page: portfolio, blog, team, pricing, faq |
+| `/components` | Component usage examples |
+| `/patterns` | Section code templates |
+| `/photos` | Stock photo URLs by category |
+| `/seo` | SEO setup with JSON-LD structured data |
+| `/darkmode` | Enable dark mode |
+| `/theme` | Apply color theme presets |
+| `/forms` | Form validation with Zod |
+| `/help` | Overview and getting started |
 
 ---
 
 ## What's included?
 
-### Design System
-- **Typography**: DM Serif Display (headings) + Plus Jakarta Sans (body)
-- **Colors**: Sophisticated neutrals with subtle primary accents
-- **Spacing**: Generous whitespace with `py-32` sections
-- **Animations**: Subtle fade-ups and parallax effects
+### 70+ Components
 
-### Page Templates
+**Layout & Navigation**
+- `NavMenu` - 7 navigation variants (minimal, centered, floating, split, transparent, dropdown, dark)
+- `Footer` - Multi-column footer with social links
+- `SidebarNav`, `FloatingNav`, `Breadcrumb`, `MegaMenu`
 
-| Route | Description |
-|-------|-------------|
-| `/` | UI Kit landing page |
-| `/demo` | Business homepage |
-| `/demo/about` | About page |
-| `/demo/services` | Services overview |
-| `/demo/contact` | Contact form |
-| `/demo/portfolio` | Project showcase |
-| `/demo/blog` | Blog overview |
-| `/demo/team` | Team members |
-| `/demo/components` | Component showcase |
-| `/404` | Custom "not found" page |
-
-### Components
-
-**UI Basics**
-- `Button` - Primary, outline, ghost variants
-- `Badge` - Status labels
-- `Input` / `Textarea` - Form elements
-- `Card` - Content containers
-
-**Premium Components**
+**Content Display**
 - `BentoGrid` - Asymmetric grid layout (Apple/Linear style)
-- `Marquee` - Infinite scrolling logos/testimonials
 - `SpotlightCard` - Cursor-following glow effect
+- `ProjectCard` - Portfolio cards with 3D tilt
+- `BlogCard` - Blog post cards
+- `TeamCard` - Team member cards
+- `TestimonialCard` - Customer reviews with grid/carousel layouts
+
+**Business-Specific**
+- `MenuSection` - Restaurant menus with dietary badges, allergens, calories
+- `DietaryBadges` - Vegan, gluten-free, spicy indicators
 - `PricingTable` - Monthly/yearly toggle pricing
+- `ProductCard` - E-commerce product cards
+- `OpeningHours`, `ReservationCTA` - Restaurant components
+
+**Feedback & Notifications**
+- `Alert` - Info, success, warning, error variants
+- `Banner`, `TopBanner` - Promotional banners
+- `Toast` - Notification toasts
+- `CookieBanner` - GDPR-compliant cookie consent
+
+**Interactive**
+- `Map` - OpenStreetMap integration (no API key needed)
 - `CommandPalette` - Cmd+K search interface
-- `ProjectCard` - Portfolio project cards with 3D tilt
-- `BlogCard` - Blog post cards with author
-- `TeamCard` - Team member cards with social links
-
-**Animation**
+- `Marquee` - Infinite scrolling content
 - `AnimateOnScroll` - Scroll-triggered animations
-- `CountUp` - Counting numbers
+- `ThemeSwitcher` - Dark mode toggle
 
-**Layout**
-- `Footer` - Multi-column footer
-- `ThemeSwitcher` - Dark mode and theme toggle
-- `CookieBanner` - GDPR-compliant cookie consent (auto-included)
-- `Map` - Interactive OpenStreetMap (no API key needed)
-
-**SEO (2026 Best Practices)**
-- JSON-LD structured data (Organization, LocalBusiness, Article, FAQ, etc.)
+### SEO (2026 Best Practices)
+- JSON-LD structured data (Organization, LocalBusiness, Article, FAQ)
 - Dynamic sitemap generation (`/sitemap.xml`)
-- Robots.txt configuration (`/robots.txt`)
+- Robots.txt configuration
 - Full OpenGraph and Twitter card support
 - Core Web Vitals optimized
 
@@ -163,11 +160,9 @@ Claude: Building now... ✅ Done!
 
 // ❌ Avoid: Overdone effects
 <GradientMesh>
-  <TiltCard>
-    <GradientText>
-      <TypeWriter>...</TypeWriter>
-    </GradientText>
-  </TiltCard>
+  <NeonText>
+    <TypeWriter>...</TypeWriter>
+  </NeonText>
 </GradientMesh>
 ```
 
@@ -185,20 +180,6 @@ Claude: Building now... ✅ Done!
 </p>
 ```
 
-### Colors
-
-```
-Neutrals (most used):
-- bg-white, bg-neutral-50, bg-neutral-900
-- text-neutral-900 (headings)
-- text-neutral-600 (body)
-- text-neutral-400 (muted)
-
-Accents (sparingly):
-- bg-primary-500 (buttons)
-- text-primary-600 (links)
-```
-
 ---
 
 ## Project Structure
@@ -207,84 +188,16 @@ Accents (sparingly):
 claude-craft/
 ├── app/
 │   ├── page.tsx              # UI Kit landing
-│   ├── layout.tsx            # Root layout (fonts)
-│   ├── globals.css           # Design tokens
-│   └── demo/                 # Business template
-│       ├── layout.tsx        # Demo layout (navbar/footer)
-│       ├── page.tsx          # Homepage
-│       ├── about/page.tsx
-│       ├── blog/page.tsx
-│       ├── components/page.tsx
-│       ├── contact/page.tsx
-│       ├── portfolio/page.tsx
-│       ├── services/page.tsx
-│       └── team/page.tsx
-├── components/
-│   ├── ui/                   # UI components (29 components)
-│   └── layout/               # Layout components
+│   ├── components/           # Component gallery
+│   ├── demo/                 # Example website template
+│   └── [your-website]/       # Your generated website
+├── components/ui/            # 70+ components
 ├── .claude/
-│   └── commands/             # Slash commands (9 commands)
-│       ├── website.md        # Generate complete website
-│       ├── page.md           # Add individual pages
-│       ├── components.md     # Component usage examples
-│       ├── patterns.md       # Section patterns
-│       ├── photos.md         # Stock photo URLs
-│       ├── help.md           # Getting started
-│       ├── darkmode.md       # Enable dark mode
-│       ├── theme.md          # Color theme presets
-│       └── forms.md          # Form validation guide
-├── CLAUDE.md                 # Claude Code instructions
-└── README.md
+│   ├── commands/             # 10 slash commands
+│   ├── skills/               # Command implementations
+│   └── COMPONENTS.md         # Component reference
+└── CLAUDE.md                 # Design guidelines
 ```
-
----
-
-## Customization
-
-### Changing colors
-
-Edit `app/globals.css`:
-
-```css
-:root {
-  /* Customize primary color */
-  --color-primary-500: 239 84% 67%;  /* Indigo */
-  --color-primary-600: 243 75% 59%;
-
-  /* Or choose another color */
-  --color-primary-500: 220 90% 56%;  /* Blue */
-}
-```
-
-### Changing fonts
-
-Edit `app/layout.tsx`:
-
-```tsx
-import { Playfair_Display } from "next/font/google";
-
-const serifFont = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
-```
-
-### Adding a new page
-
-1. Create `app/demo/[pagename]/page.tsx`
-2. Add `"use client"` directive
-3. Follow the patterns from `CLAUDE.md`
-
----
-
-## Tips for beautiful results
-
-1. **Less is more** - Don't use all effects at once
-2. **Quality photos** - Choose professional Unsplash photos
-3. **Consistency** - Stick to the neutral color palette
-4. **Whitespace** - Use `py-32` for sections, not `py-8`
-5. **Serif headings** - Always use `font-serif` for h1/h2
-6. **Subtle animations** - `fadeInUp` is often enough
 
 ---
 
